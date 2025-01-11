@@ -1,0 +1,103 @@
+/* Top Controls */
+
+.topControls {
+    border-bottom: 1px solid #ddd;
+    padding: 18px 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    background: white;
+}
+
+@media (min-height: 700px) {
+    .topControls {
+        padding: 24px 0;
+    }
+}
+
+.topControls .container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-betweenspace-between;
+    justify-content: space-between;
+}
+
+.topControls .timelineControls {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    width: 140px;
+}
+
+
+.topControls .control {
+    flex-grow: 1;
+    max-width: 180px;
+    min-width: 110px;
+    margin-left: 30px;
+    margin-top: 6px;
+}
+
+.topControls .control .label,
+.topControls .control label {
+    color: #777;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 300;
+}
+
+.topControls .control .value {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 300;
+}
+
+.topControls .control .select {
+    position: relative;
+}
+
+.topControls .control select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 6px 0;
+    width: 100%;
+    font-size: 14px;
+    border-bottom: solid 1px #ccc;
+    color: #333;
+    outline: none;
+}
+
+.topControls .control select:focus {
+    border-bottom-color: #183D4E;
+}
+
+.topControls .control .select::after {
+    content: "arrow_drop_down";
+    color: #999;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    position: absolute;
+    right: 0;
+    top: 6px;
+    pointer-events: none;
+}
