@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectDemo from './components/ProjectDemo';
+import ProjectDemo from './ISL-IndianSignLanguageTranslation/components/ProjectDemo';
 
 const ApplyingTransformer = () => {
     const projectDetails = {

@@ -1,16 +1,11 @@
 "use client";
 import React, { useState } from 'react'
-import GeneratingJunits from './GeneratingJunits'
-import SignLanguageTranslation from './SignLanguageTranslation'
-import ApplyingTransformer from './ApplyingTransformer'
-import Link from "next/link";
 import Header from "../header";
 import Mymenu from "../mymenu";
-import TopControls from './components/TopControls';
-import PoseVisualization from './components/PoseVisualiser';
-import sampleOpenPoseData from './components/SamplePoseData';
-import OpenposeKeypoints from './components/OpenposeKeypoints';
-import BlazeposeKeypoints from './components/BlazeposeKeypoints';
+import TopControls from './ISL-IndianSignLanguageTranslation/components/TopControls';
+import OpenposeKeypoints from './ISL-IndianSignLanguageTranslation/components/OpenposeKeypoints';
+import BlazeposeKeypoints from './ISL-IndianSignLanguageTranslation/components/BlazeposeKeypoints';
+import Link from 'next/link';
 
 const Index = () => {
   const [keypointModel, setKeypointModel] = useState('Openpose');
@@ -21,60 +16,25 @@ const Index = () => {
   return (
     <div>
         <Mymenu />
-        <Header title="Project - Indian Sign Language Translation" subtitle="" ></Header>
-        <TopControls onKeypointModelChange={handleKeypointModelChange}/>
-        {keypointModel ==='Openpose' ? (
-          <OpenposeKeypoints />
-        ) : (
-          <BlazeposeKeypoints />
-        )}
-        <div className="metrics">
-        <div className="output-stats ui-percTrainData">
-          <span>Test loss</span>
-          <div className="value" id="loss-test"></div>
+        <Header title="Projects" subtitle="" ></Header>
+        <div className='flex flex-wrap justify-center h-[80vh]'> 
+        <div className='justify-center m-4'>
+          
+            <div className="max-w-sm rounded overflow-hidden shadow-lg">
+              <img className="w-full" src="/projects/ISL-Thumbnail.png" alt="Sunset in the mountains" />
+              <div className="px-6 py-4">
+              <Link href="/projects/ISL-IndianSignLanguageTranslation"><div className="font-bold text-xl mb-2">Indian Sign Language Translation</div></Link>
+                <p className="text-gray-700 text-base">Implementing the sign language translation feature for Indian Sign Language(ISL), using LSTM and Position models</p>
+              </div>
+              <div className="px-6 pt-4 pb-2">
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#signlanguage</span>
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#translation</span>
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#isl</span>
+              </div>
+            </div>
+          
         </div>
-        <div className="output-stats train">
-          <span>Training loss</span>
-          <div className="value" id="loss-train"></div>
         </div>
-        <div id="linechart"></div>
-      </div>
-      <div id="heatmap"></div>
-      <div style={{ float: 'left', marginTop: '20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div className="label" style={{ width: '105px', marginRight: '10px' }}>
-            Colors shows data, neuron and weight values.
-          </div>
-          <svg width="150" height="30" id="colormap">
-            <defs>
-              <linearGradient id="gradient" x1="0%" y1="100%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#f59322" stopOpacity="1"></stop>
-                <stop offset="50%" stopColor="#e8eaeb" stopOpacity="1"></stop>
-                <stop offset="100%" stopColor="#0877bd" stopOpacity="1"></stop>
-              </linearGradient>
-            </defs>
-            <g className="core" transform="translate(3, 0)">
-              <rect width="144" height="10" style={{ fill: 'url(#gradient)' }}></rect>
-            </g>
-          </svg>
-        </div>
-        <br />
-        <div style={{ display: 'flex' }}>
-          <label className="ui-showTestData mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="show-test-data">
-            <input type="checkbox" id="show-test-data" className="mdl-checkbox__input" defaultChecked />
-            <span className="mdl-checkbox__label label">Show test data</span>
-          </label>
-          <label className="ui-discretize mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="discretize">
-            <input type="checkbox" id="discretize" className="mdl-checkbox__input" defaultChecked />
-            <span className="mdl-checkbox__label label">Discretize output</span>
-          </label>
-        </div>
-      </div>
-      <div className="more">
-        <button className="mdl-button mdl-js-button mdl-button--fab">
-          {/* Add button content here */}
-        </button>
-      </div>
     </div>
   )
 }

@@ -11,16 +11,18 @@ export default function Home() {
 
 <Mymenu />
 <Header title="Profile" subtitle="" ></Header>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div className="md:col-span-1">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 min-h-screen p-8">
+      <div className="flex justify-end">
         {/* Replace with actual image path */}
+        <div className="w-32 h-32 md:w-48 md:h-48 relative">
         <Image 
-          src="/images/profile-picture.jpg" 
+          src="/profile/profile-picture.jpg" 
           alt="Sunil Sarolkar" 
-          width={300} 
-          height={300} 
+          width={500} 
+          height={500} 
           className="rounded-full" 
         />
+        </div>
       </div>
       <div className="md:col-span-2">
         <h1 className="text-3xl font-bold mb-4">Sunil Sarolkar</h1>
