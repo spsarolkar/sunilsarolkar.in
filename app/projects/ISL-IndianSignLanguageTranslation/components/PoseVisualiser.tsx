@@ -35,7 +35,7 @@ interface OpenPoseVisualizationProps {
   
     useEffect(() => {
       if (!poseData || !svgRef.current) return;
-  
+      console.log("svgRef:", svgRef.current);
       const svg = d3.select(svgRef.current)
         .attr("width", 500)
         .attr("height", 500);
@@ -127,7 +127,9 @@ interface OpenPoseVisualizationProps {
     }, [poseData]);
   
     return (
-      <svg ref={svgRef}></svg>
+      <div style={{ width: '100%', overflowX: 'auto' , display: 'flex', justifyContent: 'flex-end'  }}> {/* Add a container div */}
+          <svg ref={svgRef} style={{ display: 'block', maxWidth: '100%' }}></svg>
+      </div>
     );
   };
   
