@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from 'react'
-import Header from "../../header";
-import Mymenu from "../../mymenu";
+import React, { useState } from 'react';
+import Header from '../../header';
+import Mymenu from '../../mymenu';
 import TopControls from './components/TopControls';
 import PoseVisualization from './components/PoseVisualiser';
 import sampleOpenPoseData from './components/SamplePoseData';
@@ -13,131 +13,99 @@ import ExpressionBarGraph from './components/ExpressionGraphPlot';
 import ExpressionsPlot from './components/ExpressionsPlot';
 
 const ISL = () => {
-    const [keypointModel, setKeypointModel] = useState('Openpose');
+  const [keypointModel, setKeypointModel] = useState('Openpose');
 
-    const handleKeypointModelChange = (newModel: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleKeypointModelChange = (newModel: React.ChangeEvent<HTMLSelectElement>) => {
     setKeypointModel(newModel.target.value);
-    };
-    
+  };
+
   return (
-    <div>
-        <Mymenu />
-        <Header title="Project - Indian Sign Language Translation" subtitle="" ></Header>
-        <div className='relative flex min-h-screen flex-col justify-center sm:py-12'>
-        <div>
-        <div className="relative px-6 pt-10 pb-8 ring-gray-900/5 sm:mx-auto sm:max-w-6xl sm:rounded-lg sm:px-10">
-          <div className="mx-auto">
-            <div><h3 className='mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl'>Problem statement</h3></div>
-            <div><p className='mb-4 text-sm leading-none tracking-tight text-gray-900 md:text-sm lg:text-lg'>Indian Sign Language is one of the most important and widely used forms of communication for people with speaking and hearing impairments. Many people or communities have attempted to
-  create systems that read the sign language symbols and convert the same to text, but most of them
-  target either American Sign Language or British Sign Language.  Our project would target
-  implementing the language translation feature for Indian Sign Language(ISL).</p></div>
+    <div className="bg-gray-100 min-h-screen font-sans text-gray-900">
+      {/* Floating Navbar */}
+      <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">Indian Sign Language Translation</h1>
+          <ul className="flex space-x-6">
+            <li><a href="#problem" className="hover:text-blue-500">Problem</a></li>
+            <li><a href="#approach" className="hover:text-blue-500">Approach</a></li>
+            <li><a href="#model" className="hover:text-blue-500">Model</a></li>
+            <li><a href="#dataset" className="hover:text-blue-500">Dataset</a></li>
+            <li><a href="#visuals" className="hover:text-blue-500">Visuals</a></li>
+          </ul>
+        </div>
+      </nav>
+
+
+      <div className="relative flex flex-col items-center justify-center pt-24">
+        <section id="problem" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
+          <h2 className="text-4xl font-extrabold mb-6">Problem Statement</h2>
+          <p className="text-lg leading-relaxed">
+            Indian Sign Language (ISL) is a crucial mode of communication for people with speaking and hearing impairments. Unlike American or British Sign Language, ISL has limited technological support. Our project aims to bridge this gap by creating an AI-powered translation system for ISL.
+          </p>
+        </section>
+
+        <section id="approach" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
+          <h2 className="text-4xl font-extrabold mb-6">Approach</h2>
+          <div className="flex justify-center">
+            <Image src="/projects/ISL-block_diagram.png" alt="ISL-block-diagram" width={700} height={700} className="rounded-lg shadow-lg" />
           </div>
-        </div>
-        <div className="relative px-6 pt-10 pb-8 ring-gray-900/5 sm:mx-auto sm:max-w-6xl sm:rounded-lg sm:px-10">
-          <div className="mx-auto">
-            <div><h3 className='mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl'>Approach</h3></div>
-            <div className='relative flex justify-center m-4'><Image src="/projects/ISL-block_diagram.png" alt="ISL-block-diagram" width={700} height={700} /> </div>
+        </section>
+
+        <section id="model" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
+          <h2 className="text-4xl font-extrabold mb-6">Model Selection</h2>
+          <div className="flex justify-center mb-4">
+            <select
+              onChange={handleKeypointModelChange}
+              value={keypointModel}
+              className="px-4 py-2 border rounded-lg bg-blue-50 text-blue-800 hover:bg-blue-100 focus:ring-2 focus:ring-blue-400 focus:outline-none transition"
+            >
+              <option value="Openpose">Openpose</option>
+              <option value="Blazepose">Blazepose</option>
+            </select>
           </div>
-        </div>
-        <div className="relative px-6 pt-4 pb-8 ring-gray-900/5 sm:mx-auto sm:max-w-6xl sm:rounded-lg sm:px-10">
-            <div><h3 className='mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl'>Selecting the position model</h3></div>
-            <div className='relative flex justify-center m-4'><TopControls onKeypointModelChange={handleKeypointModelChange}/>
+          <div className="p-6 bg-gray-50 rounded-lg shadow-inner">
+            {keypointModel === 'Openpose' ? <OpenposeKeypoints /> : <BlazeposeKeypoints />}
+          </div>
+        </section>
+
+        <section id="dataset" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
+          <h2 className="text-4xl font-extrabold mb-6">Dataset: INCLUDE</h2>
+          <p className="text-lg leading-relaxed mb-4">
+            The INCLUDE dataset contains 4292 videos of ISL signs recorded by deaf students from St. Louis School for the Deaf, Adyar, Chennai. Each video is labeled with the corresponding ISL sign and split into training and testing sets.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left border-collapse border border-gray-200">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="border p-3">Characteristic</th>
+                  <th className="border p-3">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td className="border p-3">Categories</td><td className="border p-3">15</td></tr>
+                <tr><td className="border p-3">Words</td><td className="border p-3">263</td></tr>
+                <tr><td className="border p-3">Videos</td><td className="border p-3">4292</td></tr>
+                <tr><td className="border p-3">Avg Videos per Class</td><td className="border p-3">16.3</td></tr>
+                <tr><td className="border p-3">Frame Rate</td><td className="border p-3">25 fps</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="visuals" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
+          <h2 className="text-4xl font-extrabold mb-6">Visualizations</h2>
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+            <div className="p-6 bg-gray-50 rounded-lg shadow-inner">
+              <ExpressionsPlot />
             </div>
-        </div>
-        
-          <div className="relative max-w-8xl px-6 pb-8 sm:max-w-8xl">
-        {keypointModel ==='Openpose' ? (
-              <OpenposeKeypoints />
-            ) : (
-              <BlazeposeKeypoints />
-            )}
+            <div className="p-6 bg-gray-50 rounded-lg shadow-inner">
+              <LoadTestVideoData />
             </div>
-            <div className='relative flex justify-center m-4 px-6 pt-4 pb-8 ring-gray-900/5 sm:mx-auto sm:max-w-6xl sm:rounded-lg sm:px-10'>
-            <div className='m-4 grid grid-cols-1 gap-4'>
-            <select className="select ">
-  <option disabled>Select Dataset</option>
-  <option>INCLUDE</option>
-  
-</select></div></div>
-<div className='relative flex flex-col justify-center m-4 px-6 pt-4 pb-8 ring-gray-900/5 sm:mx-auto sm:max-w-6xl sm:rounded-lg sm:px-10'>
-  <h3 className='mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl'>INCLUDE: A Large Scale Dataset for Indian Sign Language Recognition</h3>
-  <p className='mb-4 text-sm leading-none tracking-tight text-gray-900 md:text-sm lg:text-lg'>Dataset Details: The INCLUDE dataset has 4292 videos (the paper mentions 4287 videos but 5 videos were added later). The videos used for training are mentioned in train.csv (3475), while that used for testing is mentioned in test.csv (817 files). Each video is a recording of 1 ISL sign, signed by deaf students from St. Louis School for the Deaf, Adyar, Chennai.
-INCLUDE50 has 766 train videos and 192 test videos.Each video is labeled with the corresponding ISL sign. The dataset is divided into training and testing sets.  The dataset is available for download at [link to dataset].
-</p>
-<table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-900'>
-  <thead className='text-xs text-gray-900 uppercase bg-gray-50 dark:bg-gray-500 dark:text-gray-900'>
-    <tr>
-      <th scope='col' className='px-6 py-3'>Charasteristics</th>
-      <th scope='col' className='px-6 py-3'>INCLUDE-DATASET</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr className='odd:bg-white odd:dark:bg-gray-300 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-700'>
-      <td className='px-6 py-4'>Categories</td>
-      <td className='px-6 py-4'>15</td>
-    </tr>
-    <tr className='odd:bg-white odd:dark:bg-gray-300 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-700'>
-      <td className='px-6 py-4'>Words</td>
-      <td className='px-6 py-4'>263</td>
-    </tr>
-    <tr className='odd:bg-white odd:dark:bg-gray-300 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-700'>
-      <td className='px-6 py-4'>Videos</td>
-      <td className='px-6 py-4'>4287</td>
-    </tr>
-    <tr className='odd:bg-white odd:dark:bg-gray-300 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-700'>
-      <td className='px-6 py-4'>Avg Videos per class</td>
-      <td className='px-6 py-4'>16.3</td>
-    </tr>
-    <tr className='odd:bg-white odd:dark:bg-gray-300 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-700'>
-      <td className='px-6 py-4'>Avg Video Length</td>
-      <td className='px-6 py-4'>2.57s</td>
-    </tr>
-    <tr className='odd:bg-white odd:dark:bg-gray-300 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-700'>
-      <td className='px-6 py-4'>Min Video Length</td>
-      <td className='px-6 py-4'>1.28s</td>
-    </tr>
-    <tr className='odd:bg-white odd:dark:bg-gray-300 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-700'>
-      <td className='px-6 py-4'>Max Video Length</td>
-      <td className='px-6 py-4'>6.16s</td>
-    </tr>
-    <tr className='odd:bg-white odd:dark:bg-gray-300 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-700'>
-      <td className='px-6 py-4'>Frame Rate</td>
-      <td className='px-6 py-4'>25fps</td>
-    </tr>
-    <tr className='odd:bg-white odd:dark:bg-gray-300 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-700'>
-      <td className='px-6 py-4'>Resolution</td>
-      <td className='px-6 py-4'>1920x1080</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<div className='relative flex justify-center m-4 px-6 pt-4 pb-8 ring-gray-900'>
-  <ExpressionsPlot />
-  </div> 
-  <div className='relative flex justify-center m-4 px-6 pt-4 pb-8 ring-gray-900'>
-<LoadTestVideoData />
-</div>
-        </div>
+          </div>
+        </section>
       </div>
-
-
-        {/* <div className="metrics">
-        <div className="output-stats ui-percTrainData">
-          <span>Test loss</span>
-          <div className="value" id="loss-test"></div>
-        </div>
-        <div className="output-stats train">
-          <span>Training loss</span>
-          <div className="value" id="loss-train"></div>
-        </div>
-        <div id="linechart"></div>
-        
-      </div> */}
-      
-      
     </div>
-  )
-}
+  );
+};
 
-export default ISL
+export default ISL;

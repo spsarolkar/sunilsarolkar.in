@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 function TopControls({onKeypointModelChange}: {onKeypointModelChange: (event: React.ChangeEvent<HTMLSelectElement>) => void}) {
   return (
-  <div className='m-4 grid grid-cols-1 gap-4'><select className="select" onChange={onKeypointModelChange}>
+  <div className='px-4 py-2 border rounded-lg bg-blue-50 text-blue-800 hover:bg-blue-100 focus:ring-2 focus:ring-blue-400 focus:outline-none transition'><select className="select" onChange={onKeypointModelChange} >
   <option disabled>Select Base Model</option>
   <option value='Openpose'>Openpose</option>
   <option value='Blazepose'>Blazepose</option>
