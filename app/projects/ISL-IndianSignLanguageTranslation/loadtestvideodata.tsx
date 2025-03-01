@@ -42,7 +42,7 @@ const LoadTestVideoData = () => {
         console.error("Error fetching pose data:", error);
       }
     };
-    
+
     fetchCategories();
     // Fetch the pose data (if not already fetched) – you may want to load it once or per video as needed.
     fetchPoseData();
@@ -241,8 +241,8 @@ const LoadTestVideoData = () => {
       let overlayedFrame: string;
       if (poseRow) {
         // Parse the pose data columns (make sure these are valid JSON strings)
-        console.log(poseRow.handpose_peaks);
-        console.log(poseRow.handpose_peaks.replace(/array/g, '').replace(/\(/g, '[').replace(/\)/g, ']').replace(/'/g, ''));
+        // console.log(poseRow.handpose_peaks);
+        // console.log(poseRow.handpose_peaks.replace(/array/g, '').replace(/\(/g, '[').replace(/\)/g, ']').replace(/'/g, ''));
         const bodyposeCircles = JSON.parse( poseRow.bodypose_circles.replace(/array/g, '').replace(/\(/g, '[').replace(/\)/g, ']'));
         const bodyposeSticks = JSON.parse(poseRow.bodypose_sticks.replace(/array/g, '').replace(/\(/g, '[').replace(/\)/g, ']'));
         const handposeEdges = JSON.parse(poseRow.handpose_edges.replace(/array/g, '').replace(/\(/g, '[').replace(/\)/g, ']'));
