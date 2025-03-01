@@ -92,14 +92,12 @@ const ISL = () => {
 
         <section id="visuals" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
           <h2 className="text-4xl font-extrabold mb-6">Visualizations</h2>
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-            <div className="p-6 bg-gray-50 rounded-lg shadow-inner">
-              <ExpressionsPlot />
-            </div>
-            <div className="p-6 bg-gray-50 rounded-lg shadow-inner">
-              <LoadTestVideoData />
-            </div>
-          </div>
+          <ExpressionsPlot />
+        </section>
+        <section id="visuals" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
+          <h2 className="text-4xl font-extrabold mb-6">Test Videos Preview</h2>
+          <LoadTestVideoData />
+
         </section>
       </div>
     </div>
