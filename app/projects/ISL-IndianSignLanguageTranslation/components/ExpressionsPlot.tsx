@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import * as d3 from 'd3';
-import { ScaleSequential } from 'd3';
 import ExpressionPlotLegend from './ExpressionPlotLegend';
-import { colorScaler } from './ExpressionPlotType';
 import ExpressionGraph from './ExpressionGraphPlot';
 
 const ExpressionsPlot = () => {
     const [data, setData] = useState<Array<{x:string;y:string;value:number;split:string}>>([]);
     const [expressionsChunks, setexpressionsChunks] = useState<Array<Array<string>>>([[]]);
-    const [total_count, setTotalCount] = useState(0);
     const [max_count, setMaxCount] = useState(0);
     // const [colorScale, setColorScale] = useState<ScaleSequential<string, never>>(d3.scaleSequential(d3.interpolateSpectral)
     // .domain([0, 1])
@@ -39,7 +36,7 @@ const ExpressionsPlot = () => {
             count+=parseInt(row.count, 10);
         
         });
-        setTotalCount(count);
+        // setTotalCount(count);
         console.log('setMaxCount',max);
         setMaxCount(max);
 

@@ -2,34 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-/* body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-} */
-
-.mymenu {
-  position: absolute;
-  z-index: 5;
-}
-
-/* In your globals.css or a separate CSS file */
-.parallax-bg {
-  background-size: cover; /* or contain, depending on your needs */
-  background-position: center;
-  /* transform: scale(1.1);  Creates a zoom effect for parallax */
-  /* Other optional styles like filter: brightness(0.8); */
-}

@@ -1,21 +1,12 @@
 "use client";
-import React, { useState } from 'react'
+import React from 'react'
 import Header from "../header";
-import Mymenu from "../mymenu";
-import TopControls from './ISL-IndianSignLanguageTranslation/components/TopControls';
-import OpenposeKeypoints from './ISL-IndianSignLanguageTranslation/components/OpenposeKeypoints';
-import BlazeposeKeypoints from './ISL-IndianSignLanguageTranslation/components/BlazeposeKeypoints';
 import Link from 'next/link';
 
 const Index = () => {
-  const [keypointModel, setKeypointModel] = useState('Openpose');
 
-  const handleKeypointModelChange = (newModel: React.ChangeEvent<HTMLSelectElement>) => {
-    setKeypointModel(newModel.target.value);
-  };
   return (
     <div>
-        <Mymenu />
         <Header title="Projects" subtitle="" ></Header>
         <div className='flex flex-wrap justify-center h-[80vh]'> 
         <div className='justify-center m-4'>

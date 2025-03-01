@@ -1,15 +1,9 @@
 "use client";
 import React, { useState } from 'react';
-import Header from '../../header';
-import Mymenu from '../../mymenu';
-import TopControls from './components/TopControls';
-import PoseVisualization from './components/PoseVisualiser';
-import sampleOpenPoseData from './components/SamplePoseData';
 import OpenposeKeypoints from './components/OpenposeKeypoints';
 import BlazeposeKeypoints from './components/BlazeposeKeypoints';
 import LoadTestVideoData from './loadtestvideodata';
 import Image from 'next/image';
-import ExpressionBarGraph from './components/ExpressionGraphPlot';
 import ExpressionsPlot from './components/ExpressionsPlot';
 
 const ISL = () => {
@@ -86,7 +80,11 @@ const ISL = () => {
                 <tr><td className="border p-3">Words</td><td className="border p-3">263</td></tr>
                 <tr><td className="border p-3">Videos</td><td className="border p-3">4292</td></tr>
                 <tr><td className="border p-3">Avg Videos per Class</td><td className="border p-3">16.3</td></tr>
+                <tr><td className="border p-3">Avg Video Length</td><td className="border p-3">2.57s</td></tr>
+                <tr><td className="border p-3">Min Video Length</td><td className="border p-3">1.28s</td></tr>
+                <tr><td className="border p-3">Max Video Length</td><td className="border p-3">6.16s</td></tr>
                 <tr><td className="border p-3">Frame Rate</td><td className="border p-3">25 fps</td></tr>
+                <tr><td className="border p-3">Resolution</td><td className="border p-3">1920x1080</td></tr>
               </tbody>
             </table>
           </div>

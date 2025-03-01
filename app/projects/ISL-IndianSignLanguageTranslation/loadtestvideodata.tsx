@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
-import { ISLTestData, listCategories, getVideoUrl } from './interfaces/isl_r2';
+import { ISLTestData } from './interfaces/isl_r2';
 import * as d3 from 'd3';
 
 const LoadTestVideoData = () => {
@@ -19,13 +19,30 @@ const LoadTestVideoData = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const testData = await listCategories();
-        setTestData(testData);
-        setCategories(Object.keys(testData));
+        const res = await fetch('/api/listCategories', { method: 'GET' });
+        if (!res.ok) throw new Error('Failed to fetch categories');
+        const data = await res.json();
+        setTestData(data as ISLTestData);
+        setCategories(Object.keys(data as ISLTestData));
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
     };
+
+    // Fetch pose data from CSV (ensure that the CSV columns bodypose_circles, bodypose_sticks, handpose_edges, handpose_peaks are JSON strings)
+    const fetchPoseData = async () => {
+      try {
+        const res = await fetch('/api/getTestData', { method: 'GET' });
+        if (!res.ok) throw new Error('Failed to fetch test data');
+        const data = await res.json();
+        const csvUrl = (data as { url: string }).url;
+        const csvData = await d3.csv(csvUrl);
+        setPoseData(csvData);
+      } catch (error) {
+        console.error("Error fetching pose data:", error);
+      }
+    };
+    
     fetchCategories();
     // Fetch the pose data (if not already fetched) – you may want to load it once or per video as needed.
     fetchPoseData();
@@ -39,24 +56,30 @@ const LoadTestVideoData = () => {
     }
   }, [selectedCategory]);
 
-  // Fetch pose data from CSV (ensure that the CSV columns bodypose_circles, bodypose_sticks, handpose_edges, handpose_peaks are JSON strings)
-  const fetchPoseData = async () => {
-    try {
-      const data = await d3.csv('/projects/ISL/testing_cleaned.csv');
-      setPoseData(data);
-    } catch (error) {
-      console.error("Error fetching pose data:", error);
-    }
-  };
+
 
   // When a new file is selected, fetch the video URL and the pose data for that video.
   useEffect(() => {
     const fetchVideo = async () => {
       if (selectedCategory && selectedExpression && selectedFileName) {
-        const url = await getVideoUrl({ category: selectedCategory, expression: selectedExpression, filename: selectedFileName });
-        console.log('Signed URL:', url);
-        setVideoUrl(url);
-
+        try {
+          const res = await fetch('/api/getVideoUrl', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+              category: selectedCategory, 
+              expression: selectedExpression, 
+              filename: selectedFileName 
+            })
+          });
+          if (!res.ok) throw new Error('Failed to fetch video URL');
+          const data = await res.json();
+          setVideoUrl((data as {url:string}).url);
+        } catch (error) {
+          console.error("Error fetching video URL:", error);
+        }
       }
     };
     fetchVideo();
@@ -115,9 +138,9 @@ const LoadTestVideoData = () => {
         const stickWidth = 4;
         if (pose.bodypose_sticks) {
           pose.bodypose_sticks.forEach((stick: number[], idx: number) => {
-            let [mX, mY, angle, length] = stick;
+            const [mX, mY, angle, length] = stick;
             // Convert angle from degrees to radians
-            let radians = angle * Math.PI / 180;
+            const radians = angle * Math.PI / 180;
             ctx.save();
             ctx.translate(mX, mY);
             ctx.rotate(radians);
@@ -135,7 +158,7 @@ const LoadTestVideoData = () => {
         // Assume pose.bodypose_circles is an array of [x, y]
         if (pose.bodypose_circles) {
           pose.bodypose_circles.forEach((circle: number[], idx: number) => {
-            let [x, y] = circle;
+            const [x, y] = circle;
             ctx.beginPath();
             ctx.arc(x, y, 4, 0, 2 * Math.PI);
             ctx.fillStyle = toRGB(colors[idx % colors.length]);
@@ -149,9 +172,9 @@ const LoadTestVideoData = () => {
           const totalEdges = 20; // same as in your python code
           pose.handpose_edges.forEach((handEdges: any[]) => {
             handEdges.forEach((edge: any) => {
-              let [ie, x1, y1, x2, y2] = edge;
+              const [ie, x1, y1, x2, y2] = edge;
               // Use HSL to mimic hsv_to_rgb conversion
-              let hue = (ie / totalEdges) * 360;
+              const hue = (ie / totalEdges) * 360;
               ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
               ctx.lineWidth = 2;
               ctx.beginPath();
@@ -167,7 +190,7 @@ const LoadTestVideoData = () => {
         if (pose.handpose_peaks) {
           pose.handpose_peaks.forEach((handPeaks: any[]) => {
             handPeaks.forEach((peak: any) => {
-              let [x, y] = peak; // ignoring any text for now
+              const [x, y] = peak; // ignoring any text for now
               ctx.beginPath();
               ctx.arc(x, y, 3, 0, 2 * Math.PI);
               ctx.fillStyle = "red";
@@ -204,7 +227,7 @@ const LoadTestVideoData = () => {
     canvas.height = video.videoHeight;
     const duration = video.duration;
     const totalFrames = Math.floor(duration * 25); // assuming 30fps
-    let newFrames: string[] = [];
+    const newFrames: string[] = [];
 
     // Filter pose data for the current video file
     const currentPoseData = poseData.filter(row => row.FileName === selectedFileName);

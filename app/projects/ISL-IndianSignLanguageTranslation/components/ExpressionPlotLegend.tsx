@@ -23,8 +23,6 @@ const ExpressionPlotLegend: React.FC<ExpressionPlotLegendProps> = ({ max_count, 
 
     const legendHeight = 10;
     const legendWidth = containerWidth - margin.left - margin.right;
-    const legendX = 0;
-    const legendY = 0;
 
     const defs = legend.append('defs');
     const linearGradient = defs.append('linearGradient')

@@ -31,7 +31,7 @@ interface OpenPoseVisualizationProps {
   const PoseVisualization = (samplePoseData: OpenPoseVisualizationProps) => {
     const [showBubble, setShowBubble] = useState<string[]>([]);
     const svgRef = useRef<SVGSVGElement>(null);  // Use a ref for the SVG element
-    const [poseData, setPoseData] = useState(samplePoseData);
+    const [poseData] = useState(samplePoseData);
   
     useEffect(() => {
       if (!poseData || !svgRef.current) return;
@@ -65,7 +65,7 @@ interface OpenPoseVisualizationProps {
             .text(key);
         });    
       const circles = svg.selectAll("circle")
-      .on("mouseover", function(event:any,d:any){
+      .on("mouseover", function(){
         const circleId = d3.select(this).attr("id");
         const id = circleId.split("Circle")[0];
         setShowBubble([...showBubble,id]);
@@ -74,7 +74,7 @@ interface OpenPoseVisualizationProps {
         .attr("r", 10)
       });
       
-      circles.on("mouseout", function(event:any,d:any){
+      circles.on("mouseout", function(){
         const circleId = d3.select(this).attr("id");
         const id = circleId.split("Circle")[0];
         setShowBubble(showBubble.filter(item => item !== id));

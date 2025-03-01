@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import { ScaleSequential } from 'd3';
-import ExpressionPlotLegend from './ExpressionPlotLegend';
 import { colorScaler } from './ExpressionPlotType';
 
 
@@ -31,8 +29,6 @@ const ExpressionGraph = ({data,max_count, chartId}: {data:Array<{x:string;y:stri
         //   .attr("height", height + margin.top + margin.bottom)
           .append("g")
           .attr("transform", `translate(${margin.left},${margin.top})`);
-        const rowsData=[];
-          
         // List of all variables and number of them
         const domain = Array.from(new Set(data.map(function(d) { return d.y })))
         
@@ -40,7 +36,7 @@ const ExpressionGraph = ({data,max_count, chartId}: {data:Array<{x:string;y:stri
         
         
         
-        var size = d3.scaleSqrt()
+        const size = d3.scaleSqrt()
         .domain([0, 1])
         .range([0, 9]);
         
@@ -68,80 +64,8 @@ const ExpressionGraph = ({data,max_count, chartId}: {data:Array<{x:string;y:stri
         svg.append("g").call(d3.axisLeft(y))
             .attr("transform", "translate(-30,0)") // Adjust 10 as needed
             .call(d3.axisLeft(y)).style("font-size", "18px");
-    
-        // Add X axis label
-        const xAxisLabel = svg.append("text")
-            .attr("text-anchor", "middle")
-            .attr("transform", `translate(${width / 2}, ${height + margin.bottom - 10})`)
-            .text("Split")
-            .style("font-size", "20px"); // Increased font size
-
-        // svg.append("text")
-        //     .attr("text-anchor", "middle")            
-        //     .attr("transform", `translate(${width / 2}, ${height + margin.bottom - 10})`)
-        //     .text("Split")
-        //     .style("font-size", "14px");
-
-        // Add Y axis label
-        const yAxisLabel = svg.append("text")
-            .attr("text-anchor", "middle")
-            .attr("transform", "rotate(-90)")
-            .attr("y", -margin.left + 20)
-            .attr("x", -height / 2)
-            .text("Expression")
-            .style("font-size", "20px"); // Increased font size
 
 
-
-        // // Create one 'g' element for each cell of the correlogram
-        // const cor = svg.selectAll(".cor")
-        //     .data(data)
-        //     .join("g")
-        //     .attr("class", "cor")
-        //     .attr("transform", function(d) {
-        //         return `translate(${x(d.x)}, ${y(d.y)})`
-        //     });
-
-            
-        // // Create rows (rectangles)
-        // svg.selectAll(".row")
-        //     .data(data)
-        //     .enter()
-        //     .append("rect") // Add a rectangle for each row
-        //     .attr("class", "row")
-        //     .attr("x", 0)
-        //     .attr("y", (d) => y(d.y)!)
-        //     .attr("width", width) // Full width of chart area
-        //     .attr("height", y.bandwidth())
-        //     .attr("fill", "transparent") // Initially transparent (or a very light gray)
-        //     .style("cursor", "pointer")  // Indicate clickability
-        //     .on("click", (event, d) => {
-        //         console.log('d.y',d.y);
-        //         setSelectedExpression(d.y);
-        //         d3.select(event.currentTarget).attr("fill", "#e0e0e0")
-        //     });
-        // // Add alternating row background colors
-        // svg.selectAll(".cor")
-        //     .each(function(d, i) {
-        //         if (i % 2 === 1) {
-        //             d3.select(this).style("background-color", "#f0f0f0"); // Light gray
-        //         }
-        //     });
-
-        //         // // Create a color scale
-        //         // const colorScale = d3.scaleSequential(d3.interpolateSpectral)
-        //         // .domain([0, 1])
-        //         // .interpolator(d3.interpolateSpectral); 
-        // // Up right part: add circles
-        // cor.append("circle")
-        //     .attr("r", function(d) {
-        //         return size(scaling * d.value) 
-        //     })
-        //     .style("fill", function(d){
-        //         // console.log(d.value,'---',colorScale(colorfix*d.value))
-        //         return colorScaler!(d.value);
-        //     })
-        //     .style("opacity", 0.8)
         // Tooltip setup
         const tooltip = d3.select(tooltipRef.current);
 
