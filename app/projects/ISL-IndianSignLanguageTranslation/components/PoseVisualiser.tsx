@@ -1,136 +1,205 @@
 "use client";
-import React, { useEffect, useRef, useState } from 'react';
-import * as d3 from 'd3'; // Import the standard D3 library
+import React, { useEffect, useRef, useState } from "react";
+import * as d3 from "d3";
 
-
-
+// Define a type for each keypoint coordinate.
 type PoseDataPoint = { x: number; y: number };
 
-interface OpenPoseVisualizationProps {
-    nose: PoseDataPoint;
-    neck: PoseDataPoint;
-    rightShoulder: PoseDataPoint;
-    rightElbow: PoseDataPoint;
-    rightWrist: PoseDataPoint;
-    leftShoulder: PoseDataPoint;
-    leftElbow: PoseDataPoint;
-    leftWrist: PoseDataPoint;
-    rightHip: PoseDataPoint;
-    rightKnee: PoseDataPoint;
-    rightAnkle: PoseDataPoint;
-    leftHip: PoseDataPoint;
-    leftKnee: PoseDataPoint;
-    leftAnkle: PoseDataPoint;
-    rightEye: PoseDataPoint;
-    leftEye: PoseDataPoint;
-    rightEar: PoseDataPoint;
-    leftEar: PoseDataPoint;
+// Define keypoints for OpenPose. You could add another interface for BlazePose if needed.
+export interface PoseKeypoints {
+  nose: PoseDataPoint;
+  neck: PoseDataPoint;
+  rightShoulder: PoseDataPoint;
+  rightElbow: PoseDataPoint;
+  rightWrist: PoseDataPoint;
+  leftShoulder: PoseDataPoint;
+  leftElbow: PoseDataPoint;
+  leftWrist: PoseDataPoint;
+  rightHip: PoseDataPoint;
+  rightKnee: PoseDataPoint;
+  rightAnkle: PoseDataPoint;
+  leftHip: PoseDataPoint;
+  leftKnee: PoseDataPoint;
+  leftAnkle: PoseDataPoint;
+  rightEye: PoseDataPoint;
+  leftEye: PoseDataPoint;
+  rightEar: PoseDataPoint;
+  leftEar: PoseDataPoint;
 }
 
-// :React.FC<PoseVisualizationProps>   = ({ nose, leftEye,rightEye,leftShoulder,rightShoulder,leftElbow,rightElbow,leftWrist,rightWrist,leftHip,rightHip,leftKnee,rightKnee,leftAnkle,rightAnkle}) => {
-  const PoseVisualization = (samplePoseData: OpenPoseVisualizationProps) => {
-    const [showBubble, setShowBubble] = useState<string[]>([]);
-    const svgRef = useRef<SVGSVGElement>(null);  // Use a ref for the SVG element
-    const [poseData] = useState(samplePoseData);
-  
-    useEffect(() => {
-      if (!poseData || !svgRef.current) return;
-      console.log("svgRef:", svgRef.current);
-      const svg = d3.select(svgRef.current)
-        .attr("width", 500)
-        .attr("height", 500);
-        const circlesData = Object.entries(poseData);
+// Component for drawing a line between two keypoints.
+const PoseEdge: React.FC<{
+  start: PoseDataPoint;
+  end: PoseDataPoint;
+  scaleX: (x: number) => number;
+  scaleY: (y: number) => number;
+}> = ({ start, end, scaleX, scaleY }) => {
+  return (
+    <line
+      x1={scaleX(start.x)}
+      y1={scaleY(start.y)}
+      x2={scaleX(end.x)}
+      y2={scaleY(end.y)}
+      stroke="#00BFFF"
+      strokeWidth={3}
+      strokeLinecap="round"
+    />
+  );
+};
 
-        circlesData.forEach(([key, value]) => {
-          svg.append("circle")
-            .attr("cx", value.x * 500)
-            .attr("cy", value.y * 500)
-            .attr("r", 5)
-            .attr("fill", "red")
-            .attr("id", `${key}Circle`).append("title")  // Use 'title' element for tooltip
-            .text(key + ": " + JSON.stringify(value));
+// Component for drawing a keypoint (circle).
+const PoseKeypoint: React.FC<{
+  point: PoseDataPoint;
+  scaleX: (x: number) => number;
+  scaleY: (y: number) => number;
+}> = ({ point, scaleX, scaleY }) => {
+  return (
+    <circle
+      cx={scaleX(point.x)}
+      cy={scaleY(point.y)}
+      r={6}
+      fill="red"
+      stroke="#fff"
+      strokeWidth={2}
+    />
+  );
+};
 
-          // Add a label with a transparent black background
-          svg.append("rect")
-            .attr("x", (key!=='leftEye'&& key!=='rightEye')?value.x>=0.5?(value.x * 500 + key.length):(value.x * 500 - key.length *9):value.x>=0.5?(value.x * 500 + key.length):(value.x * 500 - key.length *9)) // Adjust position as needed
-            .attr("y", (key!=='leftEye'&& key!=='rightEye')?value.y * 500:value.y * 500 - 20) // Adjust position as needed
-            .attr("width", key.length * 8) // Adjust size as needed
-            .attr("height", 20) // Adjust size as needed
-            .attr("fill", "rgba(0, 0, 0, 0.5)"); // Transparent black fill
+// Component for rendering a label with a dynamic background.
+// It measures the text element to adjust the offset so the label is centered.
+interface PoseLabelProps {
+  x: number;
+  y: number;
+  text: string;
+  defaultOffset?: { dx: number; dy: number };
+}
 
-          svg.append("text")
-            .attr("x", value.x>=0.5?(value.x * 500+key.length *5):(value.x * 500 - key.length *5))
-            .attr("y", (key!=='leftEye'&& key!=='rightEye')?value.y * 500 + 15:value.y * 500-5)
-            .attr("text-anchor", "middle").attr("fill", "white")
-            .text(key);
-        });    
-      const circles = svg.selectAll("circle")
-      .on("mouseover", function(){
-        const circleId = d3.select(this).attr("id");
-        const id = circleId.split("Circle")[0];
-        setShowBubble([...showBubble,id]);
-        d3.select(this).transition()
-        .duration(100)
-        .attr("r", 10)
+const PoseLabel: React.FC<PoseLabelProps> = ({
+  x,
+  y,
+  text,
+  defaultOffset = { dx: 10, dy: -10 },
+}) => {
+  const textRef = useRef<SVGTextElement>(null);
+  const [offset, setOffset] = useState(defaultOffset);
+
+  useEffect(() => {
+    if (textRef.current) {
+      const bbox = textRef.current.getBBox();
+      // Adjust offset to center the text relative to the keypoint
+      setOffset({
+        dx: defaultOffset.dx - bbox.width / 2,
+        dy: defaultOffset.dy - bbox.height / 2,
       });
-      
-      circles.on("mouseout", function(){
-        const circleId = d3.select(this).attr("id");
-        const id = circleId.split("Circle")[0];
-        setShowBubble(showBubble.filter(item => item !== id));
-        d3.select(this).transition()
-        .duration(300)
-        .attr("r", 5);
-      })
+    }
+  }, [text, defaultOffset]);
 
-      // svg.selectAll("circle")
-      // .filter(function(d,i){
-      //   return showBubble.includes(d3.select(this).attr("id").split("Circle")[0])
-      // })
-      // .attr("r",10);
+  return (
+    <g transform={`translate(${x}, ${y})`}>
+      <rect
+        x={offset.dx - 5}
+        y={offset.dy+20}
+        width={textRef.current ? textRef.current.getBBox().width + 10 : 0}
+        height={textRef.current ? textRef.current.getBBox().height + 10 : 0}
+        fill="rgba(0, 0, 0, 0.7)"
+        rx={4}
+      />
+      <text
+        ref={textRef}
+        x={offset.dx}
+        y={offset.dy+35}
+        fill="white"
+        fontSize="12px"
+        fontFamily="Arial"
+      >
+        {text}
+      </text>
+    </g>
+  );
+};
 
+// Main visualization component that puts everything together.
+const PoseVisualization: React.FC<PoseKeypoints> = (poseData) => {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const width = 500;
+  const height = 500;
 
+  // Scale functions to convert normalized coordinates to pixel values.
+  const scaleX = (x: number) => x * width;
+  const scaleY = (y: number) => y * height;
 
-        const edges = [
-          ["nose", "leftEye"], ["nose", "rightEye"],["leftEye", "leftEar"], ["rightEye", "rightEar"],
-          ["neck", "leftShoulder"], ["neck", "rightShoulder"],["nose", "neck"],
-           ["leftShoulder", "leftElbow"],
-          ["rightShoulder", "rightElbow"], ["leftElbow", "leftWrist"],
-          ["rightElbow", "rightWrist"], ["neck", "leftHip"],
-          ["neck", "rightHip"], 
-          ["leftHip", "leftKnee"], ["rightHip", "rightKnee"],
-          ["leftKnee", "leftAnkle"], ["rightKnee", "rightAnkle"]
-      ];
-  
-      edges.forEach(([startJoint, endJoint]) => {
-          svg.append("line")
-              .attr("x1", poseData[startJoint as keyof OpenPoseVisualizationProps].x * 500)
-              .attr("y1", poseData[startJoint as keyof OpenPoseVisualizationProps].y * 500)
-              .attr("x2", poseData[endJoint as keyof OpenPoseVisualizationProps].x * 500)
-              .attr("y2", poseData[endJoint as keyof OpenPoseVisualizationProps].y * 500)
-              .attr("stroke", "black")  // Set line color
-              .attr("stroke-width", 2);   // Set line width
-      });
+  // Define the skeleton connections for OpenPose.
+  const edges: [keyof PoseKeypoints, keyof PoseKeypoints][] = [
+    ["nose", "leftEye"],
+    ["nose", "rightEye"],
+    ["leftEye", "leftEar"],
+    ["rightEye", "rightEar"],
+    ["nose", "neck"],
+    ["neck", "leftShoulder"],
+    ["neck", "rightShoulder"],
+    ["leftShoulder", "leftElbow"],
+    ["leftElbow", "leftWrist"],
+    ["rightShoulder", "rightElbow"],
+    ["rightElbow", "rightWrist"],
+    ["neck", "leftHip"],
+    ["neck", "rightHip"],
+    ["leftHip", "leftKnee"],
+    ["rightHip", "rightKnee"],
+    ["leftKnee", "leftAnkle"],
+    ["rightKnee", "rightAnkle"],
+  ];
 
-
-        // ... Your D3 code to draw the visualization using the standard d3 API ...
-        // Example:
-        // svg.append("circle")
-        //     .attr("cx", poseData.nose.x * 500)  // Scale coordinates to SVG size
-        //     .attr("cy", poseData.nose.y * 500)
-        //     .attr("r", 5)
-        //     .attr("fill", "red");
-  
-        // ... (Rest of the D3 code to draw other body parts)
-  
-  
-    }, [poseData]);
-  
-    return (
-      <div style={{ width: '100%', overflowX: 'auto' , display: 'flex', justifyContent: 'flex-end'  }}> {/* Add a container div */}
-          <svg ref={svgRef} style={{ display: 'block', maxWidth: '100%' }}></svg>
-      </div>
-    );
+  // Adjusted label offsets to spread out face labels.
+  const labelOffsets: Record<string, { dx: number; dy: number }> = {
+    nose: { dx: 0, dy: -15 },
+    leftEye: { dx: -30, dy: -40 },  // further left and up
+    rightEye: { dx: 30, dy: -40 },  // further right and up
+    leftEar: { dx: -60, dy: -10 },  // further left
+    rightEar: { dx: 60, dy: -10 },  // further right
+    leftShoulder:{dx: -20, dy: -10},
+    rightShoulder:{dx: +20, dy: -10},
+    neck:{dx: 0, dy: 0}
   };
-  
-  export default PoseVisualization;
+
+  // Convert poseData into an array of [key, point] pairs.
+  const points = Object.entries(poseData) as [keyof PoseKeypoints, PoseDataPoint][];
+
+  return (
+    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <svg
+        ref={svgRef}
+        viewBox={`0 0 ${width} ${height}`}
+        style={{ maxWidth: "100%", height: "auto" }}
+      >
+        {/* Render edges */}
+        {edges.map(([startKey, endKey]) => (
+          <PoseEdge
+            key={`${startKey}-${endKey}`}
+            start={poseData[startKey]}
+            end={poseData[endKey]}
+            scaleX={scaleX}
+            scaleY={scaleY}
+          />
+        ))}
+
+        {/* Render keypoints */}
+        {points.map(([key, point]) => (
+          <PoseKeypoint key={key} point={point} scaleX={scaleX} scaleY={scaleY} />
+        ))}
+
+        {/* Render labels */}
+        {points.map(([key, point]) => (
+          <PoseLabel
+            key={`label-${key}`}
+            x={scaleX(point.x)}
+            y={scaleY(point.y)}
+            text={key}
+            defaultOffset={labelOffsets[key] || { dx: 10, dy: -10 }}
+          />
+        ))}
+      </svg>
+    </div>
+  );
+};
+
+export default PoseVisualization;

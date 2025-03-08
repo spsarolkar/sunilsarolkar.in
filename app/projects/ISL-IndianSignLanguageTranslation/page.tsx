@@ -5,6 +5,7 @@ import BlazeposeKeypoints from './components/BlazeposeKeypoints';
 import LoadTestVideoData from './loadtestvideodata';
 import Image from 'next/image';
 import ExpressionsPlot from './components/ExpressionsPlot';
+import AnimatedSignLanguagePipeline from './components/SignLanguageTranslationDiagram';
 
 const ISL = () => {
   const [keypointModel, setKeypointModel] = useState('Openpose');
@@ -41,7 +42,8 @@ const ISL = () => {
         <section id="approach" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
           <h2 className="text-4xl font-extrabold mb-6">Approach</h2>
           <div className="flex justify-center">
-            <Image src="/projects/ISL-block_diagram.png" alt="ISL-block-diagram" width={700} height={700} className="rounded-lg shadow-lg" />
+            <AnimatedSignLanguagePipeline />
+            {/* <Image src="/projects/ISL-block_diagram.png" alt="ISL-block-diagram" width={700} height={700} className="rounded-lg shadow-lg" /> */}
           </div>
         </section>
 

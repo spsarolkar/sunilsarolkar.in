@@ -217,8 +217,8 @@ const LoadTestVideoData = () => {
     const newFrames: FrameData[] = [];
 
     // Filter pose data for the current video file
-    const currentPoseData = poseData.filter(row => row.FileName === selectedFileName);
-
+    const currentPoseData = poseData.filter(row => (row.FileName === selectedFileName && row.Expression === selectedExpression && row.Type === selectedCategory));
+    console.log('currentPoseData:', currentPoseData);
     for (let frameIndex = 0; frameIndex < totalFrames; frameIndex++) {
       const time = frameIndex * (duration / totalFrames);
       const frameDataUrl = await getVideoFrame(video, context, canvas, time);
