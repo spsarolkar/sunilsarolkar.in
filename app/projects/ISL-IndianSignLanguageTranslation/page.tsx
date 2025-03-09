@@ -30,8 +30,22 @@ const ISL = () => {
         </div>
       </nav>
 
+      {/* Under Construction Notice */}
+      <div className="bg-yellow-100 border border-yellow-300 text-yellow-800 px-4 py-2 mt-16 mx-auto max-w-7xl rounded-lg shadow-md">
+        <p className="text-center">
+          Note: This page is under construction. A working demo is available at{' '}
+          <a 
+            href="https://huggingface.co/spaces/sunilsarolkar/ISL-SignLanguageTranslation" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="font-bold underline hover:text-yellow-900"
+          >
+            Hugging Face Spaces
+          </a>.
+        </p>
+      </div>
 
-      <div className="relative flex flex-col items-center justify-center pt-24">
+      <div className="relative flex flex-col items-center justify-center pt-8">
         <section id="problem" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
           <h2 className="text-4xl font-extrabold mb-6">Problem Statement</h2>
           <p className="text-lg leading-relaxed">
@@ -99,7 +113,6 @@ const ISL = () => {
         <section id="visuals" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
           <h2 className="text-4xl font-extrabold mb-6">Test Videos Preview</h2>
           <LoadTestVideoData />
-
         </section>
       </div>
     </div>

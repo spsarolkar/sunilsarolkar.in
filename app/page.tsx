@@ -51,7 +51,7 @@ const profile = {
       role: "Neural Network Designer",
       responsibilities:
         "Designed a time series neural network using LSTM for Indian Sign Language translation, targeting improved communication for those with speaking and hearing impairments.",
-      technologies: ["Tensorflow", "Python", "Spark"],
+      technologies: ["Pytorch","Keras3", "Python", "Openpose", "Blazepose"],
     },
     {
       name: "Feed and Adjustment Workstation",
@@ -148,14 +148,10 @@ const profile = {
 const allSkills = [...new Set(profile.skills.flatMap((skill) => skill.split(", ")))];
 
 export default function Profile() {
-  const svgFavicon = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" fill="%230072ff"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="24" font-family="Arial, sans-serif">SS</text></svg>`;
 
   return (
     <>
-    {/* <Head>
-        <link rel="icon" href={svgFavicon} />
-        <title>Sunil Sarolkar | Profile</title>
-      </Head> */}
+
     <ParallaxProvider>
       <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 text-gray-800 font-sans relative">
         {/* Fixed Navigation */}
