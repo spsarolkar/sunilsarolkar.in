@@ -47,20 +47,23 @@ const profile = {
     {
       name: "Sign Language Recognition using Neural Network",
       company: "IISC Bangalore",
-      duration: "2 months",
+      duration: "1 Year",
       role: "Neural Network Designer",
       responsibilities:
         "Designed a time series neural network using LSTM for Indian Sign Language translation, targeting improved communication for those with speaking and hearing impairments.",
       technologies: ["Pytorch","Keras3", "Python", "Openpose", "Blazepose"],
     },
     {
-      name: "Feed and Adjustment Workstation",
+      name: "Financial Data Warehouse",
       company: "Deutsche Bank India",
-      duration: "1 year",
+      duration: "9 year",
       role: "Software Engineer",
       responsibilities:
-        "Worked on understanding the application from the vendor, fixing defects, and implementing new functionality for legal entity adjustments.",
-      technologies: ["Hazelcast", "MongoDB", "REST", "Java", "J2EE", "Spring", "JavaScript"],
+        "In my current role as an Associate at Deutsche Bank, I have been responsible for:"+
+"Developing and optimizing Java-based backend services for enterprise applications, ensuring high availability and performance."+
+"Cloud migration and security enhancements, implementing secure architectures for applications transitioning to Kubernetes/Openshift."+
+"Enhancing encryption security across multiple applications by upgrading encryption algorithms to auditor-recommended standards (C++ and Java implementations).",
+      technologies: ["Hazelcast", "MongoDB", "REST", "Java", "J2EE", "Spring", "JavaScript","Angukar","Spark","Kafka","Openshift","Kubernetes","Keras","Tensorflow"],
     },
     {
       name: "Accounting Subledger/SPE Accounting",
@@ -100,6 +103,11 @@ const profile = {
     },
   ],
   skills: [
+    "Spark",
+    "Kafka",
+    "Hazelcast",
+    "MongoDB",
+    "Oracle",
     "Java",
     "Python",
     "TensorFlow",
@@ -117,6 +125,7 @@ const profile = {
     "Maven",
     "Arduino",
     "Raspberry Pi",
+    "Keras"
   ],
   certifications: [
     "PG Certification in Computational Data Science (CDS) - IISc, Bangalore (2024)",
@@ -258,6 +267,23 @@ export default function Profile() {
                   </Link>
                   <p className="text-gray-700 text-base">
                     Implementing the sign language translation feature for Indian Sign Language (ISL) using LSTM and Position models.
+                  </p>
+                </div>
+                <div className="px-6 pt-4 pb-2">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#signlanguage</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#translation</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#isl</span>
+                </div>
+              </div>
+              <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-50 hover:shadow-xl transition">
+                <img className="w-full h-48 object-cover" src="/projects/VehicleTelemetry/OBD2_Thumbnail.png" alt="Sign language translation project" />
+                <div className="px-6 py-4">
+                  <Link href="/projects/ISL-IndianSignLanguageTranslation">
+                    <div className="font-bold text-xl mb-2 hover:text-blue-500 transition">Vehicle Parameters Monitoring and Failure Detection</div>
+                  </Link>
+                  <p className="text-gray-700 text-base">
+                  Vehicle Telemetry Console using Raspberry Pi + ELM327 (OBD-II Bluetooth)
+                  In this project, I demonstrate how to capture real-time vehicle parameters like speed and RPM from an OBD-II port using an ELM327 Bluetooth module, and display them on a custom instrument cluster built with Raspberry Pi.
                   </p>
                 </div>
                 <div className="px-6 pt-4 pb-2">
