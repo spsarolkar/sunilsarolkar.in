@@ -375,7 +375,7 @@ const AnimatedSignLanguagePipeline: React.FC = () => {
         // const csvUrl = (data3 as { url: string }).url;
         const csvData = await d3.csv("/projects/ISL/testing_demo.csv");
         setPoseData(csvData);
-        console.log("csvData", csvData);
+        // console.log("csvData", csvData);
         // console.log("poseData", poseData);
         
         // extractFrames();

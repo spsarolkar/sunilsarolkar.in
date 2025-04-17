@@ -33,8 +33,10 @@ const LoadTestVideoData = () => {
     const fetchCategories = async () => {
       try {
         const res = await fetch('/api/listCategories', { method: 'GET' });
+        // console.log('res:', res.body);
         if (!res.ok) throw new Error('Failed to fetch categories');
         const data = await res.json();
+        // console.log('data',data)
         setTestData(data as ISLTestData);
         setCategories(Object.keys(data as ISLTestData));
       } catch (error) {

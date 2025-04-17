@@ -278,7 +278,7 @@ export default function Profile() {
               <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-50 hover:shadow-xl transition">
                 <img className="w-full h-48 object-cover" src="/projects/VehicleTelemetry/OBD2_Thumbnail.png" alt="Sign language translation project" />
                 <div className="px-6 py-4">
-                  <Link href="/projects/ISL-IndianSignLanguageTranslation">
+                  <Link href="/projects/VehicleTelemetry">
                     <div className="font-bold text-xl mb-2 hover:text-blue-500 transition">Vehicle Parameters Monitoring and Failure Detection</div>
                   </Link>
                   <p className="text-gray-700 text-base">
@@ -287,9 +287,9 @@ export default function Profile() {
                   </p>
                 </div>
                 <div className="px-6 pt-4 pb-2">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#signlanguage</span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#translation</span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#isl</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#obd2</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#anamoly_detection</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#kafka</span>
                 </div>
               </div>
               <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-50 hover:shadow-xl transition">

@@ -78,7 +78,7 @@ const VehicleTelemetryShowcase = () => {
         </section>
         <section id="roadmap" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
         <h2 className="text-4xl font-extrabold mb-6">Demo Video</h2>
-        <iframe width="1080" height="610" src="https://www.youtube.com/embed/X3aA26rKwIs" title="🚗 Vehicle Telemetry Console using Raspberry Pi + ELM327 (OBD-II Bluetooth)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="1080" height="610" src="https://www.youtube.com/embed/X3aA26rKwIs" title="🚗 Vehicle Telemetry Console using Raspberry Pi + ELM327 (OBD-II Bluetooth)" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
         </section>
         <section id="repo" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
           <h2 className="text-4xl font-extrabold mb-6">📂 GitHub Repository</h2>

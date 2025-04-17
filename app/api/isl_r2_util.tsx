@@ -25,13 +25,15 @@ export const listCategories = async (): Promise<ISLTestData> => {
         //   console.log("checkpoint 2");
         const params = {
             Bucket: 'isl-test-videos',
-            Prefix: ''
+            Prefix: 'openpose-test',
         };
         const command = new ListObjectsV2Command(params);
         const response = await S3.send(command);
         const islData: ISLTestData = {
         } as ISLTestData;
+        // console.log('response.Contents',response.Contents)
         response.Contents?.forEach(obj => {
+          // console.log('obj',obj)
             const parts = obj.Key!.split('/');
             if (parts.length >= 4) {
                 const category = parts[1];
@@ -87,7 +89,7 @@ export const getVideoUrl = async ({category="", expression="", filename=""}): Pr
 
 export const getTestData = async (): Promise<string> => {
     try {
-        console.log("getTestData checkpoint 1");
+        // console.log("getTestData checkpoint 1");
         const account_id=process.env.CF_ACCOUNT_ID;
         const r2_access_key=process.env.CF_R2_ACCESS_KEY;
         const r2_access_key_secret=process.env.CF_R2_ACCESS_KEY_SECRET;
@@ -102,10 +104,10 @@ export const getTestData = async (): Promise<string> => {
               secretAccessKey: `${r2_access_key_secret}`,
             },
           });
-          console.log("getTestData checkpoint 2");
+          // console.log("getTestData checkpoint 2");
         const getSignedUrlCommand = new GetObjectCommand({ Bucket: 'isl-test-videos', Key: `testing_cleaned.csv`});
         const url = await getSignedUrl(S3, getSignedUrlCommand, { expiresIn: 3600 });
-        console.log("getTestData checkpoint 3");
+        // console.log("getTestData checkpoint 3");
 
         return url;
     } catch (error) {
