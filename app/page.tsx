@@ -273,10 +273,40 @@ export default function Profile() {
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#signlanguage</span>
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#translation</span>
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#isl</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Python</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Pytorch</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Keras</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#SentencePiece</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#DataScience</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#DataEngineering</span>
                 </div>
               </div>
               <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-50 hover:shadow-xl transition">
-                <img className="w-full h-48 object-cover" src="/projects/VehicleTelemetry/OBD2_Thumbnail.png" alt="Sign language translation project" />
+                <img className="w-full h-48 object-cover" src="projects/Structformer/Structformer_Thumbnail.png" alt="Structural data transformer" />
+                <div className="px-6 py-4">
+                  <Link href="/projects/Structformer">
+                    <div className="font-bold text-xl mb-2 hover:text-blue-500 transition">Structformer:Transformer architecture for structural data transformation</div>
+                  </Link>
+                  <p className="text-gray-700 text-base">
+                  🔁 StructFormer is a Transformer-based model that learns to convert structured validation errors into actionable SQL adjustments. Trained on domain-specific data using SentencePiece tokenization, it's ideal for automating rule-based transformations in finance, ERP, or data cleaning pipelines.
+                  </p>
+                </div>
+                <div className="px-6 pt-4 pb-2">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#AI</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#MachineLearning</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#DataEngineering</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Transformer</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#SQL</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Python</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Tensorflow</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Keras</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#SentencePiece</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#DataScience</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#DataEngineering</span>
+                </div>
+              </div>
+              <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-50 hover:shadow-xl transition">
+                <img className="w-full h-48 object-cover" src="/projects/VehicleTelemetry/OBD2_Thumbnail.png" alt="Vehicle Parameter monitoring" />
                 <div className="px-6 py-4">
                   <Link href="/projects/VehicleTelemetry">
                     <div className="font-bold text-xl mb-2 hover:text-blue-500 transition">Vehicle Parameters Monitoring and Failure Detection</div>

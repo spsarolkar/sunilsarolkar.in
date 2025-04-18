@@ -6,6 +6,8 @@ import LoadTestVideoData from './loadtestvideodata';
 import Image from 'next/image';
 import ExpressionsPlot from './components/ExpressionsPlot';
 import AnimatedSignLanguagePipeline from './components/SignLanguageTranslationDiagram';
+import EmbeddingPositionalEncoding from './components/EmbeddingPositionalEncoding';
+import EmbeddingVisualization from './components/EmbeddingVisualisation';
 
 const ISL = () => {
   const [keypointModel, setKeypointModel] = useState('Openpose');
@@ -114,6 +116,14 @@ const ISL = () => {
           <h2 className="text-4xl font-extrabold mb-6">Test Videos Preview</h2>
           <LoadTestVideoData />
         </section>
+        {/* <section id="visuals" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
+          <h2 className="text-4xl font-extrabold mb-6">Embeddings</h2>
+          <EmbeddingVisualization />
+        </section>
+        <section id="visuals" className="w-full max-w-6xl bg-white p-10 rounded-lg shadow-md mb-8">
+          <h2 className="text-4xl font-extrabold mb-6">Embedding Position Encoding</h2>
+          <EmbeddingPositionalEncoding />
+        </section> */}
       </div>
     </div>
   );
