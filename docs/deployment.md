@@ -66,3 +66,17 @@ catalogue. This is an existing backend issue, not a new theme feature.
 The implementation and verification receipts are in
 `docs/superpowers/plans/2026-11-03-personal-lab-theme.md`. The original dirty
 checkout was preserved; the refresh lives on `codex/personal-lab-theme`.
+
+
+## Credential and project restoration, 3 November 2026
+
+Source af71b2b5fae789b1305caaccceb0b764840eafb4 was published at
+https://c2055225.profile-sunilsarolkar-in.pages.dev and verified on the custom
+domain. The receipt is in
+`docs/superpowers/plans/2026-11-03-credential-project-restoration.md`.
+
+After building, run `node --test tests/*.test.mjs`. In addition to the eight data
+checks, two tests inspect the actual prerender manifest and HTML. Keep literal
+ISL and telemetry paths out of the generic route's generateStaticParams: duplicate
+generation overwrote their dedicated output in the production build. Validate the
+Cloudflare HTML output as well as the Next preview, then check live content.
