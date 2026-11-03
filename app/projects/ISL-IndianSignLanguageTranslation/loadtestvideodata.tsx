@@ -305,7 +305,8 @@ const LoadTestVideoData = () => {
           <select
             onChange={(e) => setSelectedCategory(e.target.value)}
             value={selectedCategory}
-            className='w-full p-3 border rounded-lg bg-blue-50 text-blue-800 hover:bg-blue-100 focus:ring-2 focus:ring-blue-400'
+            aria-label="Video category"
+            className="lab-select"
           >
             <option value=''>Select Category</option>
             {categories.map((category) => (
@@ -315,7 +316,8 @@ const LoadTestVideoData = () => {
           <select
             onChange={(e) => setSelectedExpression(e.target.value)}
             value={selectedExpression}
-            className='w-full p-3 border rounded-lg bg-blue-50 text-blue-800 hover:bg-blue-100 focus:ring-2 focus:ring-blue-400'
+            aria-label="Sign expression"
+            className="lab-select"
             disabled={!selectedCategory}
           >
             <option value=''>Select Expression</option>
@@ -323,23 +325,25 @@ const LoadTestVideoData = () => {
               <option key={expression} value={expression}>{expression}</option>
             ))}
           </select>
-          <div className='border rounded-lg max-h-80 overflow-y-auto p-3 bg-gray-50'>
+          <div className="video-files">
             {testData[selectedCategory]?.[selectedExpression]?.map((filename, index) => (
-              <div
-                key={index}
+              <button
+                type="button"
+                key={filename}
                 onClick={() => setSelectedFileName(filename)}
-                className={`p-2 cursor-pointer rounded ${filename === selectedFileName ? 'bg-blue-200' : 'hover:bg-gray-200'}`}
+                aria-pressed={filename === selectedFileName}
+                className="video-file"
               >
                 {filename}
-              </div>
+              </button>
             ))}
           </div>
         </div>
 
         {/* Video Player and Frames */}
-        <div className='col-span-3'>
+        <div className="min-w-0 md:col-span-3">
           {videoUrl ? (
-            <div className='w-full aspect-video rounded-lg overflow-hidden shadow-md mb-4'>
+            <div className="w-full aspect-video rounded-sm overflow-hidden mb-4">
               <video
                 ref={videoRef}
                 src={videoUrl}
@@ -350,19 +354,21 @@ const LoadTestVideoData = () => {
               />
             </div>
           ) : (
-            <p className='text-center text-gray-500'>Select a video to preview</p>
+            <p className="demo-empty">Select a video to preview</p>
           )}
-          <h3 className='text-xl font-bold mb-4'>Extracted Frames</h3>
+          <h3 className="text-2xl mt-6 mb-4">Extracted Frames</h3>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
             {frames.map((frame, index) => (
-              <div
+              <button
+                type="button"
                 key={index}
-                className='border rounded-lg overflow-hidden shadow-md cursor-pointer'
+                className="frame-button"
+                aria-label={`Inspect frame ${index + 1}`}
                 onClick={() => setModalFrameIndex(index)}
               >
-                <img src={frame.url} alt={`Frame ${index + 1}`} className='w-full' />
-                <p className='text-center text-sm p-2 bg-gray-200'>Frame#: {index}</p>
-              </div>
+                <img src={frame.url} alt="" className="w-full" />
+                <span>Frame {index + 1}</span>
+              </button>
             ))}
           </div>
         </div>
@@ -371,12 +377,12 @@ const LoadTestVideoData = () => {
       {/* Modal overlay for playing frames */}
       {modalFrameIndex !== null && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          className="frame-modal"
           onClick={() => { setModalFrameIndex(null); setIsPlaying(false); }}
         >
-          <div className="bg-white p-4 rounded-lg relative max-w-11xl" onClick={(e) => e.stopPropagation()}>
+          <div className="frame-modal-panel" onClick={(e) => e.stopPropagation()}>
             <button
-              className="absolute top-2 right-2 text-lg font-bold"
+              className="frame-close" aria-label="Close frame preview"
               onClick={() => { setModalFrameIndex(null); setIsPlaying(false); }}
             >
               &times;
@@ -390,19 +396,19 @@ const LoadTestVideoData = () => {
             </div>
             <div className="mt-4 flex justify-center gap-4">
               <button
-                className="px-4 py-2 bg-blue-500 text-white rounded"
+                className="lab-button"
                 onClick={() => setIsPlaying(!isPlaying)}
               >
                 {isPlaying ? "Pause" : "Play"}
               </button>
               <button
-                className="px-4 py-2 bg-gray-500 text-white rounded"
+                className="lab-button secondary"
                 onClick={() => setModalFrameIndex((prev) => (prev === null ? 0 : Math.max(prev - 1, 0)))}
               >
                 Prev
               </button>
               <button
-                className="px-4 py-2 bg-gray-500 text-white rounded"
+                className="lab-button secondary"
                 onClick={() =>
                   setModalFrameIndex((prev) =>
                     prev === null ? 0 : Math.min(prev + 1, frames.length - 1)

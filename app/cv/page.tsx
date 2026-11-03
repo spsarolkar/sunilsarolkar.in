@@ -1,147 +1,60 @@
-import React from 'react';
+import type { Metadata } from "next";
 import Header from "../header";
-import Image from 'next/image';
-import cvData from '../_data/cv.json';
+import FormattedText from "../components/FormattedText";
+import cv from "../_data/cv.json";
+import skills from "../_data/skills.json";
+export const metadata: Metadata = { title: "Curriculum vitae", description: "Professional experience, education and interests of Sunil Sarolkar." };
+export default function CvPage() {
+    return (<article className="wrap lab-page">
+      <Header eyebrow="The professional side" title="Experience & learning." subtitle="My background in data engineering, software, and machine learning. For my professional profile and writing, visit GitHub Pages."/>
+      <a className="lab-button secondary" href="https://spsarolkar.github.io/" target="_blank" rel="noopener noreferrer">Professional profile ↗</a>
 
-const CvPage = () => {
-    const { generalInformation, professionalExperience, education, openSourceProjects, honorsAndAwards, interests } = cvData;
+      <section className="content-section">
+        <h2>A quick introduction</h2>
+        <dl className="cv-summary">
+          {Object.entries(cv.generalInformation).map(([key, value]) => (<div key={key}><dt>{({ fullName: "Full name", role: "Role", location: "Location", languages: "Languages" } as Record<string, string>)[key]}</dt><dd>{value}</dd></div>))}
+        </dl>
+      </section>
 
-    return (
-        <div className='container mx-auto px-4 py-8 max-w-4xl'>
-            <Header title="Curriculum Vitae" subtitle="Resume" />
+      <section className="content-section">
+        <h2>Professional experience</h2>
+        {cv.professionalExperience.map((job) => (<div className="cv-row" key={`${job.institution}-${job.year}`}>
+            <p className="cv-year">{job.year}</p>
+            <div><h3>{job.title}</h3><p className="institution">{job.institution}</p><div className="prose-copy">{job.description.map((text, i) => <p key={i}><FormattedText text={text}/></p>)}</div></div>
+          </div>))}
+      </section>
 
-            {/* General Information */}
-            <section className="mb-10 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                <h2 className="text-2xl font-bold mb-4 border-b pb-2 text-gray-800">General Information</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <p className="text-gray-600 font-semibold">Full Name</p>
-                        <p className="text-gray-800">{generalInformation.fullName}</p>
-                    </div>
-                    <div>
-                        <p className="text-gray-600 font-semibold">Role</p>
-                        <p className="text-gray-800">{generalInformation.role}</p>
-                    </div>
-                    <div>
-                        <p className="text-gray-600 font-semibold">Location</p>
-                        <p className="text-gray-800">{generalInformation.location}</p>
-                    </div>
-                    <div>
-                        <p className="text-gray-600 font-semibold">Languages</p>
-                        <p className="text-gray-800">{generalInformation.languages}</p>
-                    </div>
-                </div>
-            </section>
+      <section className="content-section">
+        <h2>Education & certifications</h2>
+        {cv.education.map((item) => (<div className="education-item" key={`${item.title}-${item.year}`}>
+            {item.logo && <img src={item.logo} alt="" width={52} height={52} loading="lazy"/>}
+            <div><p className="cv-year">{item.year}</p><h3>{item.title}</h3><p className="muted">{item.institution}</p>{item.description && <div className="prose-copy mt-3">{item.description.map((text, i) => <p key={i}><FormattedText text={text}/></p>)}</div>}</div>
+          </div>))}
+      </section>
 
-            {/* Professional Experience */}
-            <section className="mb-10">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2 text-gray-800">Professional Experience</h2>
-                <div className="relative border-l-2 border-gray-200 ml-3 space-y-8">
-                    {professionalExperience.map((exp, idx) => (
-                        <div key={idx} className="mb-8 ml-6">
-                            <span className="absolute -left-2.5 mt-1.5 w-5 h-5 bg-blue-600 rounded-full border-4 border-white"></span>
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                                <div className="flex flex-col md:flex-row justify-between mb-2">
-                                    <h3 className="text-xl font-bold text-gray-800">{exp.title}</h3>
-                                    <span className="text-sm font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full w-fit">
-                                        {exp.year}
-                                    </span>
-                                </div>
-                                <h4 className="text-lg text-gray-600 mb-4">{exp.institution}</h4>
-                                <div className="text-gray-700 text-justify space-y-2">
-                                    {exp.description.map((desc, dIdx) => (
-                                        <div key={dIdx} dangerouslySetInnerHTML={{ __html: desc }} />
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
+      <section className="content-section">
+        <h2>Open-source projects</h2>
+        {cv.openSourceProjects.map((project, i) => (<div className="cv-row" key={i}>
+            <p className="cv-year">{project.year}</p>
+            <div className="prose-copy"><h3><FormattedText text={project.title}/></h3><p><FormattedText text={project.description}/></p></div>
+          </div>))}
+      </section>
 
-            {/* Education */}
-            <section className="mb-10">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2 text-gray-800">Education</h2>
-                <div className="space-y-6">
-                    {education.map((edu, idx) => (
-                        <div key={idx} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col md:flex-row gap-4 items-start">
-                            <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-                                {edu.logo && (
-                                    <Image
-                                        src={edu.logo}
-                                        alt={edu.institution}
-                                        width={60}
-                                        height={60}
-                                        style={{ maxHeight: '60px', width: 'auto' }}
-                                    />
-                                )}
-                            </div>
-                            <div className="flex-grow">
-                                <div className="flex flex-col md:flex-row justify-between">
-                                    <h3 className="text-lg font-bold text-gray-800">{edu.title}</h3>
-                                    <span className="text-sm text-gray-500 whitespace-nowrap">{edu.year}</span>
-                                </div>
-                                <p className="text-gray-600 font-medium">{edu.institution}</p>
-                                {edu.description && (
-                                    <div className="mt-2 text-sm text-gray-700 space-y-1">
-                                        {edu.description.map((desc, dIdx) => (
-                                            <p key={dIdx} dangerouslySetInnerHTML={{ __html: desc }} />
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Open Source Projects */}
-            <section className="mb-10">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2 text-gray-800">Open Source Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {openSourceProjects.map((proj, idx) => (
-                        <div key={idx} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                            <div className="flex justify-between items-center mb-2">
-                                <h3 className="text-lg font-bold text-gray-800" dangerouslySetInnerHTML={{ __html: proj.title }}></h3>
-                                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">{proj.year}</span>
-                            </div>
-                            <p className="text-gray-700 text-sm" dangerouslySetInnerHTML={{ __html: proj.description }}></p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Honors and Awards */}
-            <section className="mb-10">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2 text-gray-800">Honors and Awards</h2>
-                <div className="space-y-4">
-                    {honorsAndAwards.map((awardGroup, idx) => (
-                        <div key={idx} className="flex flex-col md:flex-row gap-4">
-                            <div className="md:w-20 font-bold text-gray-500 pt-1">{awardGroup.year}</div>
-                            <div className="flex-grow space-y-2">
-                                {awardGroup.items.map((item, iIdx) => (
-                                    <div key={iIdx} className="bg-white p-3 rounded shadow-sm border border-gray-100 text-gray-700" dangerouslySetInnerHTML={{ __html: item }} />
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Interests */}
-            <section className="mb-12">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2 text-gray-800">Interests</h2>
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                        {interests.map((interest, idx) => (
-                            <li key={idx} dangerouslySetInnerHTML={{ __html: interest }} />
-                        ))}
-                    </ul>
-                </div>
-            </section>
-
+      <section className="content-section">
+        <h2>Skills & tools</h2>
+        <div className="cv-summary">
+          {skills.map((category) => <div key={category.name}><p className="eyebrow rust">{category.name}</p><div className="lab-tags">{category.items.map((skill) => <span className="lab-tag" key={skill.name}>{skill.name}</span>)}</div></div>)}
         </div>
-    );
-};
+      </section>
 
-export default CvPage;
+      <section className="content-section">
+        <h2>Recognition</h2>
+        <div className="recognition-grid">
+          {cv.internalRecognition.map((badge) => <div key={badge.name}><img src={badge.image} alt="" width={72} height={72} loading="lazy"/><p>{badge.name}</p><p className="muted">{badge.issuer}</p></div>)}
+        </div>
+        {cv.honorsAndAwards.map((group) => (<div className="cv-row" key={group.year}><p className="cv-year">{group.year}</p><div className="prose-copy">{group.items.map((text, i) => <p key={i}><FormattedText text={text}/></p>)}</div></div>))}
+      </section>
+
+      <section className="content-section"><h2>Interests</h2><div className="prose-copy">{cv.interests.map((text, i) => <p key={i}><FormattedText text={text}/></p>)}</div></section>
+    </article>);
+}

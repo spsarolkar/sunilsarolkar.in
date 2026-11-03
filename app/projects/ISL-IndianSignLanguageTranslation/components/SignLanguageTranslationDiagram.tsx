@@ -163,7 +163,7 @@ const CanvasFrame: React.FC<CanvasFrameProps> = ({
     img.src = frameUrl;
   }, [frameUrl, pose, drawMarkers, width, height]);
 
-  return <canvas ref={canvasRef} style={{ borderRadius: "6px" }} />;
+  return <canvas ref={canvasRef} style={{ borderRadius: "3px" }} />;
 };
 
 
@@ -299,7 +299,7 @@ const TripleFrameCarousel: React.FC<TripleFrameCarouselProps> = ({
   }, [currentIndex, frames.length]);
 
   return (
-    <div style={{ overflow: "hidden", width: frameWidth * 3, height: frameHeight, margin: "0 auto", border: "1px solid #ddd", borderRadius: "6px" }}>
+    <div style={{ overflow: "hidden", width: frameWidth * 3, height: frameHeight, margin: "0 auto", border: "1px solid #ddd", borderRadius: "3px" }}>
       <div
         ref={containerRef}
         style={{
@@ -484,33 +484,34 @@ export default AnimatedSignLanguagePipeline;
 const styles: Record<string, React.CSSProperties> = {
   pageWrapper: {
     padding: "1rem",
+    minWidth: "410px",
   },
   diagramContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     gap: "1rem",
-    backgroundColor: "#f8fafc",
-    borderRadius: "8px",
-    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+    backgroundColor: "var(--light)",
+    borderRadius: "3px",
+    border: "1px solid var(--rule)",
     padding: "1rem",
   },
   diagramBox: {
-    backgroundColor: "#0ea5e9",
+    backgroundColor: "var(--teal)",
     color: "#ffffff",
     padding: "0.8rem 1.2rem",
-    borderRadius: "8px",
+    borderRadius: "3px",
     fontWeight: 600,
-    boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+    border: "1px solid var(--rule)",
     textAlign: "center",
     minWidth: "260px",
     opacity: 0,
   },
   modelBox: {
-    background: "linear-gradient(45deg, #4f46e5, #6366f1)",
+    background: "var(--teal)",
   },
   softmaxBox: {
-    background: "linear-gradient(45deg, #f59e0b, #fbbf24)",
+    background: "var(--teal)",
   },
   boxText: {
     margin: 0,
@@ -527,13 +528,13 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
   },
   imageWrapper: {
-    borderRadius: "6px",
+    borderRadius: "3px",
     overflow: "hidden",
   },
   imagePlaceholder: {
     width: "120px",
     height: "80px",
-    backgroundColor: "#ddd",
+    backgroundColor: "var(--rule)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -549,7 +550,7 @@ const styles: Record<string, React.CSSProperties> = {
     height: "15px",
     backgroundColor: "#fff",
     borderRadius: "50%",
-    border: "2px solid #6366f1",
+    border: "2px solid var(--teal)",
   },
   softmaxContainer: {
     display: "flex",
@@ -569,14 +570,14 @@ const styles: Record<string, React.CSSProperties> = {
     fontFamily: "monospace",
   },
   outputContainer: {
-    backgroundColor: "#e5e7eb",
+    backgroundColor: "var(--light)",
     padding: "0.5rem",
-    borderRadius: "6px",
+    borderRadius: "3px",
   },
   outputText: {
     margin: 0,
     fontWeight: 600,
-    color: "#111827",
+    color: "var(--ink)",
   },
 };
 
@@ -590,14 +591,14 @@ const arrowStyles: Record<string, React.CSSProperties> = {
   line: {
     width: "2px",
     height: "20px",
-    backgroundColor: "#0ea5e9",
+    backgroundColor: "var(--teal)",
   },
   head: {
     width: 0,
     height: 0,
     borderLeft: "6px solid transparent",
     borderRight: "6px solid transparent",
-    borderTop: "8px solid #0ea5e9",
+    borderTop: "8px solid var(--teal)",
     marginTop: "-1px",
   },
 };
@@ -650,7 +651,7 @@ const arrowStyles: Record<string, React.CSSProperties> = {
 //   }, [currentIndex, frames.length]);
 
 //   return (
-//     <div style={{ overflow: "hidden", width: frameWidth * 3, height: frameHeight, margin: "0 auto", border: "1px solid #ddd", borderRadius: "6px" }}>
+//     <div style={{ overflow: "hidden", width: frameWidth * 3, height: frameHeight, margin: "0 auto", border: "1px solid #ddd", borderRadius: "3px" }}>
 //       <div
 //         ref={containerRef}
 //         style={{

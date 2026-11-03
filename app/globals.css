@@ -1,3 +1,6 @@
+@import "./lab.css";
+@import "./internal.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

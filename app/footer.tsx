@@ -1,16 +1,14 @@
-"use client";
-
-import React from 'react'
-
-const Footer = () => {
-  return (
-    <div>
-        {/* Footer */}
-        <footer className="bg-white text-gray-600 text-center py-6  shadow-inner relative z-10">
-        <p className="text-sm">&copy; {new Date().getFullYear()} Sunil Sarolkar. All rights reserved.</p>
+import Link from "next/link";
+export default function Footer() {
+    return (<div className="wrap">
+      <footer className="foot">
+        <p>© {new Date().getFullYear()} Sunil Sarolkar · Made with curiosity.</p>
+        <nav className="foot-links" aria-label="Footer navigation">
+          <Link href="/about">About</Link>
+          <Link href="/cv">CV</Link>
+          <a href="https://github.com/spsarolkar" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://spsarolkar.github.io/" target="_blank" rel="noopener noreferrer">Professional profile ↗</a>
+        </nav>
       </footer>
-    </div>
-  )
+    </div>);
 }
-
-export default Footer

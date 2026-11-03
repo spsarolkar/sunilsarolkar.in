@@ -1,6 +1,7 @@
 # Personal lab homepage — 3 November 2026
 
-Status: proposed; awaiting review of the browser mockup and this short design.
+Status: personal-lab direction selected; 3 November follow-up requests the same
+simple theme on internal pages as well. Implement and preview as one theme update.
 
 ## Intent
 
@@ -57,6 +58,12 @@ the homepage direction, content and layout; implementation still uses Next.js.
 
 Retain the existing Next.js 15 / React 19 / Tailwind / Cloudflare Pages setup.
 Use scoped homepage styling and replace the generated title and description.
+Apply the same simple theme to the project index, project detail pages, historical
+sign-language demo, about page, CV and not-found page. Use one shared navigation,
+footer, color palette, heading scale, page introduction, links and controls.
+Retain existing project/CV content and demo interactions. The about page can use
+the homepage's already-reviewed introduction and interests. The internal /test
+background experiment is not a public content page and remains unchanged.
 Keep existing project, CV and API routes working, and keep their local changes.
 Do not change the professional GitHub Pages site or deploy unrelated edits.
 The separate password-protected map Worker and its routes stay protected.
@@ -66,7 +73,9 @@ No new accounts, CMS, database, packages or hosting migration.
 The checkout has pre-existing edits in app/page.tsx, app/layout.tsx, app/Badges.tsx,
 app/projects/page.tsx and package-lock.json, and untracked project data/detail/CV
 and asset files. Capture a baseline before implementation and integrate narrowly.
-Only commit this design at the design stage. Publication must package an explicitly
+Preserve the existing content in an isolated branch before theme edits. The native
+worktree tool targets the calling chat's unrelated app repo, so use a Git worktree
+for the website repository instead. Publication must package an explicitly
 reviewed source set rather than blindly deploying the dirty checkout.
 
 ## Content evidence

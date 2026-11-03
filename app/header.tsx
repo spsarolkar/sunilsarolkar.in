@@ -1,17 +1,12 @@
-import React from 'react'
-
 interface HeaderProps {
     title: string;
     subtitle?: string;
+    eyebrow?: string;
 }
-  
-const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
-return (
-        <header className='bg-gray-800 p-8 text-center'>
-        <h1 className="text-white text-3xl font-bold">{title}</h1>
-        {subtitle && <h2 className="optional">{subtitle}</h2>}
-        </header>
-)
+export default function Header({ title, subtitle, eyebrow }: HeaderProps) {
+    return (<header className="page-heading">
+      {eyebrow && <p className="eyebrow rust">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {subtitle && <p className="page-intro">{subtitle}</p>}
+    </header>);
 }
-
-export default Header
