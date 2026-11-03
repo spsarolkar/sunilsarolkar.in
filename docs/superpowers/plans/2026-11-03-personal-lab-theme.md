@@ -56,7 +56,7 @@
 - [x] Check browser desktop and phone views and exercise navigation, model selector and demo entry points.
 - [x] Run TypeScript, Next production build, Cloudflare Pages packaging and existing map authentication tests as applicable. Record pre-existing blockers rather than migrate tooling.
 - [x] Run a fresh whole-change review, fix material regressions, and commit cohesive visual changes.
-- [ ] Show working local preview; publish only the verified website source set through its existing Cloudflare setup when packaging permits.
+- [x] Show working local preview; publish only the verified website source set through its existing Cloudflare setup when packaging permits.
 
 ## Verification policy
 
@@ -102,3 +102,23 @@ the source checkout. Record task receipts in this plan as the work completes.
   placement overriding the homepage layout. Renamed the homepage class/selectors
   to .lab-hero to avoid the existing library collision. Rebuild and root-page
   visual verification required before the final publishing receipt.
+
+## Final publication receipt
+
+- Live site: https://sunilsarolkar.in/
+- Final Pages deployment: https://a83fa424.profile-sunilsarolkar-in.pages.dev
+- Deployed source: 7a7b0e687768fb9f45bb9a2b00ff5dea3a210fb8.
+- Production branch: production. Earlier production receipt retained for rollback:
+  a3a76dba-12c1-41d5-b995-ed1631c5d78e.
+- Cloudflare preview verified all ten content pages, styled 404 and API smoke test.
+- Final production checks passed for 16 endpoints, packaged CSS corrections,
+  retained API baseline and private map password gate. Detailed local receipt:
+  /tmp/sunilsarolkar-theme-production-verification.json.
+- Corrected homepage visually verified using the actual React production build
+  at desktop and 400px widths, then verified on the live custom domain.
+- Published with the site's pinned Wrangler 3.99.0 from an empty temporary context,
+  preserving dashboard production bindings rather than supplying empty bindings
+  from the incomplete local config. Existing getTestData still returns HTTP 200.
+- All visual sources committed on codex/personal-lab-theme. Original dirty checkout
+  and separate map Worker preserved. No code push or merge into main performed.
+- Publication instructions recorded in docs/deployment.md.
