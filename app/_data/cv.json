@@ -173,6 +173,15 @@
       "description": []
     },
     {
+      "title": "Professional Data Engineer",
+      "institution": "Google Cloud",
+      "year": "2024",
+      "logo": "/assets/img/gcp_logo.png",
+      "description": [
+        "Demonstrated proficiency in designing and building data processing systems and operationalizing machine learning models on Google Cloud."
+      ]
+    },
+    {
       "title": "Associate Cloud Engineer",
       "institution": "Google Cloud",
       "year": "2023",

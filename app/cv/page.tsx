@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "../header";
 import FormattedText from "../components/FormattedText";
 import cv from "../_data/cv.json";
+import trainingBadges from "../_data/badges.json";
 
 export const metadata: Metadata = {
   title: "Curriculum vitae — AI & Finance",
@@ -84,6 +85,19 @@ export default function CvPage() {
             </div>
           </div>
         ))}
+      </section>
+
+      <section id="training-badges" className="content-section">
+        <h2>Training & earned badges</h2>
+        <p className="prose-copy mb-7">Internal professional development and credentials earned at Deutsche Bank.</p>
+        <div className="recognition-grid">
+          {trainingBadges.map((badge) => (
+            <figure key={badge.name}>
+              <img src={badge.image} alt="" width={72} height={72} loading="lazy" />
+              <figcaption>{badge.name}</figcaption>
+            </figure>
+          ))}
+        </div>
       </section>
     </article>
   );
