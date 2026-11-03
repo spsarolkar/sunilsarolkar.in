@@ -3,6 +3,8 @@ import Header from "../header";
 import FormattedText from "../components/FormattedText";
 import cv from "../_data/cv.json";
 import trainingBadges from "../_data/badges.json";
+import certifications from "../_data/certifications.json";
+import "./credentials.css";
 
 export const metadata: Metadata = {
   title: "Curriculum vitae — AI & Finance",
@@ -85,15 +87,20 @@ export default function CvPage() {
 
       <section id="education" className="content-section">
         <h2>Education & certifications</h2>
-        {cv.education.map((item) => (
-          <div className="education-item" key={`${item.title}-${item.year}`}>
-            {item.logo && <img src={item.logo} alt="" width={52} height={52} loading="lazy" />}
+        {cv.education.map((item) => {
+          const credential = certifications.find(record => record.title === item.title);
+          return <div className={`education-item${credential ? " education-credential" : ""}`} key={`${item.title}-${item.year}`}>
+            {(credential?.image || item.logo) && <img className={credential ? "credential-art" : undefined} src={credential?.image ?? item.logo} alt="" width={credential ? 128 : 52} height={credential ? 128 : 52} loading="lazy" />}
             <div>
               <p className="cv-year">{item.year}</p><h3>{item.title}</h3><p className="muted">{item.institution}</p>
+              {credential && <div className="credential-record">
+                <p>Issued <time dateTime={credential.issued}>{credential.issuedLabel}</time> · Expires <time dateTime={credential.expires}>{credential.expiresLabel}</time></p>
+                <a className="lab-link" href={credential.url} target="_blank" rel="noopener noreferrer">View credential ↗</a>
+              </div>}
               {item.description.length > 0 && <div className="prose-copy mt-3">{item.description.map((text, i) => <p key={i}>{text}</p>)}</div>}
             </div>
-          </div>
-        ))}
+          </div>;
+        })}
       </section>
 
       <section id="training-badges" className="content-section">
