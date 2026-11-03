@@ -1,0 +1,81 @@
+[
+    {
+        "title": "Build Your Own GCP ML Engineer Mock Exam App with GitHub Pages",
+        "description": "Mock exam for GCP ML Engineer",
+        "img": "/assets/projects/GCPML_ENG_MOCK_EXAM/GCP_ml_exam_thumbnail.png",
+        "importance": 1,
+        "category": "work",
+        "slug": "gcp-ml-mock-exam",
+        "externalLink": "https://spsarolkar.github.io/ml-cert-mock-exam/",
+        "content": "An interactive web app to practice for the Google Cloud Certified - Professional Machine Learning Engineer exam. Features section-weighted mock questions, timer-based exam mode, tag-based filtering, detailed summaries, and PDF export — all hosted on GitHub Pages."
+    },
+    {
+        "title": "StructFormer",
+        "description": "Transformer-based model built to automate structured data transformation from one schema to another",
+        "img": "/assets/projects/StructFormer/Structformer_Thumbnail.png",
+        "importance": 2,
+        "category": "work",
+        "tech_stack": [
+            "Python",
+            "TensorFlow",
+            "FastAPI",
+            "SentencePiece"
+        ],
+        "slug": "structformer",
+        "content": "StructFormer is a Transformer-based deep learning model designed to learn adjustments on structured data and generate corrective SQL statements. It is especially useful in enterprise workflows such as financial reconciliation, trade corrections, or regulatory compliance."
+    },
+    {
+        "title": "Indian Sign Language Translation",
+        "description": "A neural-network based system for translating Indian Sign Language using OpenPose keypoints and LSTM.",
+        "img": "/assets/projects/ISL/ISL-Thumbnail.png",
+        "importance": 3,
+        "category": "work",
+        "tech_stack": [
+            "Python",
+            "TensorFlow",
+            "OpenPose",
+            "LSTM"
+        ],
+        "slug": "ISL-IndianSignLanguageTranslation",
+        "content": "Indian Sign Language (ISL) translation bridges the gap between the hearing-impaired community and those who don’t know sign. Our system uses OpenPose to extract body‐ and hand-keypoints from video frames, then feeds the time-series of those points into an LSTM network to produce text translations in real time."
+    },
+    {
+        "title": "Vehicle Telemetry with Raspberry Pi & Kafka",
+        "description": "Capturing vehicle parameters using Raspberry Pi & ELM327 with real-time anomaly detection planned using Kafka and Spark",
+        "img": "/assets/projects/VehicleTelemetry/OBD2_Thumbnail.png",
+        "importance": 4,
+        "category": "fun",
+        "tech_stack": [
+            "Python",
+            "Raspberry Pi",
+            "Kafka",
+            "Spark"
+        ],
+        "slug": "vehicle-telemetry",
+        "content": "A Raspberry Pi-powered telemetry console that connects to your car’s OBD-II port using ELM327 (or CAN Bus), captures parameters like RPM, speed, coolant temperature, and displays them in real-time on a Python-based UI."
+    },
+    {
+        "title": "Rouge Syntax Highlighter Preview",
+        "description": "rouge themes syntax-highlighter",
+        "img": "/assets/projects/SyntaxHeighlighting/syntax_heighlighte-thumbnail.png",
+        "importance": 5,
+        "category": "fun",
+        "tech_stack": [
+            "Ruby",
+            "Jekyll",
+            "JavaScript"
+        ],
+        "slug": "rouge-syntax-highlighter",
+        "externalLink": "https://spsarolkar.github.io/rouge-theme-preview/",
+        "content": "Rouge is a popular syntax highlighter written in Ruby to provide the capability of syntax highlighting for code written on html pages. Rouge supports many different themes. While implementing the same feature for my blog I realized that there is no preview page where I can see how these themes look like. So I took the challenge and written my own."
+    },
+    {
+        "title": "Findbugs Plugin to fix connection leak detection issue",
+        "description": "Findbugs Plugin",
+        "importance": 6,
+        "category": "work",
+        "slug": "findbugs-plugin",
+        "externalLink": "https://github.com/spsarolkar/Findbugs_AdResTrackr",
+        "content": "Recently while working with Findbugs plugin for Eclipse I discovered that Findbugs fails to identify resource leak in the scenarios where resource is initialized outside the method scope. The solution for the problem is not that straightforward and separate plugin was required to recognize the resource leak situations."
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Deutsche Bank Generative AI Developer",
+        "image": "/assets/badges/db_ai_badge_blue_distinction.png"
+    },
+    {
+        "name": "Deutsche Bank Cloud Engineer",
+        "image": "/assets/badges/db_cloud_engineer_distinction.png"
+    },
+    {
+        "name": "Deutsche Bank Cloud Data Engineer",
+        "image": "/assets/badges/gcp_cloud_data_eng_distinction.png"
+    },
+    {
+        "name": "Deutsche Bank Machine Learning Engineer",
+        "image": "/assets/badges/db_ml_engineer.png"
+    }
+]
