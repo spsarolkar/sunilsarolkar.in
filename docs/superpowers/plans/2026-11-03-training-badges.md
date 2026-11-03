@@ -11,7 +11,7 @@ omissions as instructions to remove earlier credentials.
 - [x] Retain every existing latest-CV data value and the established theme.
 - [x] Verify TypeScript, production Pages build and asset presence.
 - [x] Check the rendered section at desktop and phone widths.
-- [ ] Publish and verify the live credentials, badge images and private map gate.
+- [x] Publish and verify the live credentials, badge images and private map gate.
 
 Badge credentials are presented as internal Deutsche Bank professional development;
 the Google Cloud certification remains in education/certifications. No new
@@ -21,3 +21,11 @@ Verification: all latest CV data remains identical after excluding the restored
 certificate. Four original badge files exist and rendered with their names.
 Desktop row and 400px two-column layout visually verified. Build logs are in
 /tmp/sunilsarolkar-badges-build.log and /tmp/sunilsarolkar-badges-tsc.log.
+
+Published: https://sunilsarolkar.in/cv#training-badges
+Deployment: https://7ead36de.profile-sunilsarolkar-in.pages.dev
+Deployed source: 8ed17eb3f5d369b9cd97453fdfa46d9261bd77a8.
+All four live image hashes match the original local assets; the captions and
+restored 2024 certification are present. Latest employment dates remain correct.
+Live browser inspection and homepage/API/private map gate checks passed.
+Receipt: /tmp/sunilsarolkar-badges-verification.json.
