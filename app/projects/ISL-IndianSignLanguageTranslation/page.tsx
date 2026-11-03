@@ -42,7 +42,7 @@ export default function ISL() {
         <p className="prose-copy">The earlier demo uses INCLUDE videos of ISL signs recorded by deaf students from St. Louis School for the Deaf, Adyar, Chennai. These are the dataset characteristics documented for that demo.</p>
         <div className="demo-scroll"><table className="demo-table"><caption className="sr-only">Dataset characteristics documented in the original demo</caption><thead><tr><th scope="col">Characteristic</th><th scope="col">Details</th></tr></thead><tbody>{datasetDetails.map(([name, value]) => <tr key={name}><td>{name}</td><td>{value}</td></tr>)}</tbody></table></div>
       </section>
-      <section id="visuals" className="content-section"><h2>Exploring the data</h2><div className="demo-scroll"><ExpressionsPlot /></div></section>
+      <section id="visuals" className="content-section"><h2>Exploring the data</h2><ExpressionsPlot /></section>
       <section id="videos" className="content-section"><h2>Video & frame preview</h2><p className="prose-copy mb-6">Choose a category and expression to inspect a clip and its extracted frames.</p><LoadTestVideoData /></section>
     </article>);
 }

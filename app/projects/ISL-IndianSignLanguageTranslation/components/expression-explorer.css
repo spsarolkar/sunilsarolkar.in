@@ -1,0 +1,101 @@
+.expression-explorer { min-width: 0; }
+.expression-explorer .dataset-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--rule); margin-top: 28px; }
+.dataset-metrics > div { padding: 22px 24px 22px 0; }
+.dataset-metrics > div + div { padding-left: 24px; border-left: 1px solid var(--rule); }
+.dataset-metrics dt { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.dataset-metrics dd { font: 30px/1.4 var(--mono); color: var(--teal); margin-top: 10px; }
+.dataset-metrics dd span { font-size: 16px; color: var(--muted); }
+.expression-explorer summary { cursor: pointer; min-height: 44px; padding-block: 10px; color: var(--teal); font-size: 14px; line-height: 1.7; }
+.expression-explorer summary:focus-visible { outline: 3px solid var(--rust); outline-offset: 4px; }
+.snapshot-audit { margin-block: 18px 28px; border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
+.snapshot-audit > summary { color: var(--rust); }
+.snapshot-audit .prose-copy, .analysis-next .prose-copy { padding: 12px 0 18px; }
+.data-overview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.data-panel { margin: 0; padding: 24px; border: 1px solid var(--rule); background: var(--surface); border-radius: 4px; }
+.data-panel h3, .explorer-heading h3 { color: var(--ink); font: 600 17px/1.5 var(--sans); }
+.data-panel figcaption > p, .explorer-heading > p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-top: 6px; }
+.overview-bars, .distribution-bars { list-style: none; padding: 0; margin-top: 24px; }
+.overview-bars li + li { margin-top: 20px; }
+.chart-value-line { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-size: 14px; }
+.chart-value-line strong { font: 14px/1.5 var(--mono); color: var(--ink); }
+.split-key { display: inline-block; width: 8px; height: 8px; margin-right: 7px; border-radius: 50%; }
+.expression-explorer .training { background-color: var(--teal); }
+.expression-explorer .testing { background-color: var(--rust); }
+.expression-explorer .validation { background-color: #637449; }
+.overview-track { height: 9px; border-radius: 2px; background: var(--light); overflow: hidden; }
+.overview-track > span { display: block; height: 100%; border-radius: 2px; }
+.overview-bars .overview-track { margin-top: 9px; }
+.overview-bars li > p { color: var(--muted); font-size: 12px; margin-top: 7px; line-height: 1.6; }
+.distribution-bars { display: grid; gap: 20px; }
+.distribution-bars li { display: grid; grid-template-columns: 100px minmax(0, 1fr) 26px; align-items: center; gap: 12px; }
+.distribution-bars li > span { font: 13px/1.7 var(--mono); }
+.distribution-bars small { font: 12px var(--sans); color: var(--muted); }
+.distribution-bars strong { text-align: right; font: 14px var(--mono); }
+.expression-explorer .chart-caption { font-size: 13px; line-height: 1.75; color: var(--muted); margin-top: 22px; max-width: 75ch; }
+.explorer-heading { margin: 36px 0 22px; scroll-margin-top: 28px; }
+.explorer-controls { display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 1fr)); gap: 18px; align-items: end; }
+.explorer-controls label { display: block; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+.expression-explorer .explorer-controls input, .expression-explorer .explorer-controls select { width: 100%; min-width: 0; min-height: 46px; padding: 10px 12px; font-size: 15px; color: var(--ink); background-color: var(--paper); border: 1px solid var(--rule); border-radius: 4px; }
+.expression-explorer .explorer-controls select { padding-right: 32px; }
+.explorer-controls input:focus-visible { outline: 3px solid var(--rust); outline-offset: 4px; }
+.explorer-view-line { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 20px; }
+.explorer-view { display: inline-flex; gap: 0; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.explorer-view button { padding: 8px 18px; min-height: 44px; font-size: 14px; color: var(--teal); }
+.explorer-view button + button { border-left: 1px solid var(--rule); }
+.explorer-view button[aria-pressed="true"] { background: var(--teal); color: white; }
+.explorer-view button:focus-visible { outline-offset: -4px; }
+.explorer-result-line { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding-block: 20px; margin-top: 12px; border-bottom: 1px solid var(--rule); }
+.explorer-result-line > p { font-size: 14px; color: var(--muted); }
+.explorer-pagination { display: flex; align-items: center; gap: 12px; }
+.explorer-pagination button { min-height: 44px; padding: 8px 10px; color: var(--teal); border: 1px solid var(--rule); border-radius: 4px; font-size: 14px; }
+.explorer-pagination button:hover:enabled { background: var(--light); }
+.explorer-pagination > span { font: 12px var(--mono); color: var(--muted); }
+.expression-rows { list-style: none; margin: 0; padding: 0; }
+.expression-row { display: grid; grid-template-columns: minmax(130px, .75fr) minmax(0, 3fr); gap: 10px 28px; padding-block: 22px 14px; border-bottom: 1px solid var(--rule); }
+.expression-row-heading h4 { font: 600 16px/1.5 var(--sans); color: var(--ink); overflow-wrap: anywhere; margin-bottom: 5px; }
+.data-flag { display: block; color: var(--rust); font-size: 12px; line-height: 1.7; }
+.missing-flag { color: var(--muted); }
+.expression-splits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; min-width: 0; }
+.expression-splits .chart-value-line { font-size: 12px; gap: 8px; }
+.expression-splits .split-key { margin-right: 5px; width: 6px; height: 6px; }
+.count-visual { height: 9px; margin-top: 10px; background: var(--light); border-radius: 2px; }
+.count-visual > span { display: block; height: 100%; border-radius: 2px; }
+.view-bubbles .count-visual { display: flex; align-items: center; height: 32px; background: transparent; }
+.view-bubbles .count-visual > span { border-radius: 50%; flex-shrink: 0; }
+.not-recorded { display: block; color: var(--muted); font-size: 12px; margin-top: 7px; font-style: italic; }
+.expression-total { grid-column: 2; }
+.expression-total > summary { font-size: 12px; color: var(--muted); }
+.expression-total > div { color: var(--muted); font-size: 14px; line-height: 1.8; padding: 6px 0 12px; }
+.expression-total strong { font-family: var(--mono); color: var(--ink); font-weight: 400; }
+.analysis-next { border-top: 1px solid var(--rule); margin-top: 28px; padding-top: 12px; }
+@media (max-width: 850px) {
+  .data-overview-grid { grid-template-columns: 1fr; }
+  .data-panel { padding: 22px; }
+  .explorer-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .explorer-controls > div:first-child { grid-column: 1 / -1; }
+  .expression-row { grid-template-columns: 130px minmax(0, 1fr); gap: 10px 22px; }
+  .expression-splits { gap: 18px; }
+}
+@media (max-width: 600px) {
+  .expression-explorer .dataset-metrics { grid-template-columns: 1fr; }
+  .dataset-metrics > div, .dataset-metrics > div + div { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-left: 0; padding: 16px 0; }
+  .dataset-metrics > div + div { border-top: 1px solid var(--rule); }
+  .dataset-metrics dt { max-width: 24ch; }
+  .dataset-metrics dd { margin-top: 0; font-size: 26px; white-space: nowrap; }
+  .dataset-metrics dd span { font-size: 13px; }
+  .data-panel { padding: 20px; }
+  .distribution-bars li { grid-template-columns: 95px minmax(0, 1fr) 25px; gap: 8px; }
+  .explorer-controls { grid-template-columns: 1fr; gap: 16px; }
+  .expression-row { grid-template-columns: 1fr; gap: 16px; padding-block: 24px 10px; }
+  .expression-row-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+  .expression-row-heading h4 { margin: 0; width: 100%; }
+  .expression-splits { grid-template-columns: 1fr; gap: 14px; }
+  .split-metric { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px; align-items: center; }
+  .expression-splits .chart-value-line { font-size: 13px; }
+  .count-visual, .not-recorded { margin-top: 0; }
+  .not-recorded { font-size: 13px; }
+  .expression-total { grid-column: 1; }
+  .expression-total > summary { font-size: 13px; }
+  .explorer-result-line { align-items: start; }
+  .explorer-pagination { gap: 10px; }
+}
