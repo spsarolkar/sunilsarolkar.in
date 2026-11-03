@@ -15,7 +15,7 @@ The private map and server configuration are outside this visual refinement.
 - [x] Give unavailable demo views clear, quiet messages; preserve API contracts.
 - [x] Verify build, TypeScript and data/asset preservation.
 - [x] Review real pages at desktop and phone widths; resolve observed defects.
-- [ ] Publish to the existing Cloudflare Pages project and verify public routes,
+- [x] Publish to the existing Cloudflare Pages project and verify public routes,
       credentials, assets and protected-map access without exposing private data.
 
 Validation receipts will be added after execution. No dependencies are added.
@@ -47,4 +47,23 @@ Validation receipts will be added after execution. No dependencies are added.
 
 ## Live verification
 
-Pending publication to the existing production Pages project.
+Published source commit `7a8add7b743e799748d13253bbf5910b50f29615` to the
+existing `profile-sunilsarolkar-in` production branch using Wrangler 3.99.0
+from the empty temporary publication context, preserving dashboard bindings.
+
+- Deployment: https://9c87276b.profile-sunilsarolkar-in.pages.dev
+- Live domain: https://sunilsarolkar.in/
+- All 11 content routes return 200 with the expected shared shell. Both an
+  arbitrary missing page and unknown project return styled 404 responses.
+- All 118 CV values, section links, four badges (matching source image hashes),
+  17 image paths and preserved research disclosures pass on the live domain.
+- `/api/hello` and `/api/getTestData` return 200. `/api/listCategories` remains
+  the documented pre-existing 500. No API repair is claimed.
+- Protected map landing still shows its password form without map payload;
+  direct map HTML returns 401. No private Worker was changed or redeployed.
+- Actual published homepage inspected in Chrome with DevTools closed.
+- Live receipt: `/tmp/sunilsarolkar-refinement-production-verification.json`.
+- Deploy log: `/tmp/sunilsarolkar-refinement-deploy.log`.
+
+The implementation remains isolated on `codex/personal-lab-theme`. The original
+dirty checkout was not merged, reset or modified. No dependencies were added.
