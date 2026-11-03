@@ -3,7 +3,7 @@ export default function Home() {
     return (<div className="wrap">
 
 
-    <section className="hero">
+    <section className="lab-hero">
     <div>
     <p className="hello eyebrow">
     <span className="dot"></span>A personal lab · Pune, India</p>

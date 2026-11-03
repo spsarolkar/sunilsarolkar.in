@@ -97,3 +97,8 @@ the source checkout. Record task receipts in this plan as the work completes.
 - Final browser pass found an inherited prose-link color hiding the about-page
   primary button text. A two-rule CSS specificity fix restores its white label;
   before/after browser inspection verified the correction.
+
+- Live root-page browser verification exposed DaisyUI's generic .hero child grid
+  placement overriding the homepage layout. Renamed the homepage class/selectors
+  to .lab-hero to avoid the existing library collision. Rebuild and root-page
+  visual verification required before the final publishing receipt.

@@ -17,11 +17,11 @@ nav{display:flex;gap:28px;align-items:center;font-size:13px}
 nav .professional{border-left:1px solid var(--rule);padding-left:25px;color:var(--teal)}
 .eyebrow{font:11px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:1.6px;text-transform:uppercase}
 .rust{color:var(--rust)}
-.hero{padding:79px 0 75px;display:grid;grid-template-columns:1fr 215px;gap:45px;align-items:center}
+.lab-hero{padding:79px 0 75px;display:grid;grid-template-columns:1fr 215px;gap:45px;align-items:center}
 .hello{display:flex;align-items:center;gap:10px;margin-bottom:25px}
 .dot{width:7px;height:7px;border-radius:50%;background:#7e8a58;display:inline-block}
-.hero h1{font-size:clamp(46px,5.5vw,72px);letter-spacing:-3px;line-height:1.06;max-width:760px}
-.hero h1 em{color:var(--teal);font-weight:400}
+.lab-hero h1{font-size:clamp(46px,5.5vw,72px);letter-spacing:-3px;line-height:1.06;max-width:760px}
+.lab-hero h1 em{color:var(--teal);font-weight:400}
 .intro{margin-top:25px;max-width:590px;color:var(--muted);font-size:17px;line-height:1.8}
 .hero-links{display:flex;gap:26px;align-items:center;margin-top:31px;font-size:13px}
 .solid-link{background:var(--teal);color:#fff;padding:12px 19px;display:inline-flex;align-items:center;gap:21px;border-radius:3px;min-height:46px}
@@ -84,8 +84,8 @@ nav .professional{border-left:1px solid var(--rule);padding-left:25px;color:var(
 .top{min-height:100px;flex-wrap:wrap;padding:21px 0;gap:16px}
 nav{gap:19px;flex-wrap:wrap}
 nav .professional{padding-left:17px}
-.hero{grid-template-columns:1fr;padding:52px 0;gap:0}
-.hero h1{font-size:57px}
+.lab-hero{grid-template-columns:1fr;padding:52px 0;gap:0}
+.lab-hero h1{font-size:57px}
 .margin-note{display:none}
 .feature{grid-template-columns:1fr 0.85fr}
 .feature-copy{padding:30px 25px}
@@ -103,9 +103,9 @@ nav .professional{padding-left:17px}
 .brand-mark{width:29px;height:29px;font-size:20px}
 nav{gap:16px;font-size:11px}
 nav .professional{border:0;padding-left:0}
-.hero{padding:43px 0 45px}
+.lab-hero{padding:43px 0 45px}
 .hello{margin-bottom:22px;font-size:10px}
-.hero h1{font-size:46px;letter-spacing:-2px}
+.lab-hero h1{font-size:46px;letter-spacing:-2px}
 .intro{font-size:15px;margin-top:22px}
 .hero-links{gap:20px;font-size:12px;flex-wrap:wrap}
 .feature{grid-template-columns:1fr}
