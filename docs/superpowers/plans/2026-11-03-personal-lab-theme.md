@@ -93,3 +93,7 @@ the source checkout. Record task receipts in this plan as the work completes.
 - Before publication: live /api/listCategories already returns 500; /api/getTestData
   returns 200. Map sign-in returns 200, direct map HTML returns 401. Keep those
   pre-existing backend limitations distinct from theme verification.
+
+- Final browser pass found an inherited prose-link color hiding the about-page
+  primary button text. A two-rule CSS specificity fix restores its white label;
+  before/after browser inspection verified the correction.

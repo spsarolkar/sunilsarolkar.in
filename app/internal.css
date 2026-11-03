@@ -30,6 +30,8 @@ button:disabled, select:disabled { opacity: .55; cursor: not-allowed; }
 .prose-copy p + p { margin-top: 14px; }
 .prose-copy strong { color: var(--ink); font-weight: 600; }
 .prose-copy a { color: var(--teal); text-decoration: underline; }
+.prose-copy .lab-button { color: white; text-decoration: none; }
+.prose-copy .lab-button.secondary { color: var(--teal); }
 .prose-copy h3 { color: var(--ink); font-size: 23px; margin: 24px 0 12px; }
 .prose-copy ul { list-style: disc; padding-left: 20px; }
 .prose-copy li + li { margin-top: 10px; }
