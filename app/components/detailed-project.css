@@ -1,0 +1,41 @@
+/* Restored project explanations, diagrams and examples. */
+.project-story .story-actions { margin-bottom: 24px; }
+.project-story .story-navigation { gap: 0 24px; }
+.project-story .story-navigation a { max-width: 32ch; font-size: 13px; line-height: 1.6; padding-block: 8px; }
+.project-story .project-flow { margin: 0; }
+.project-story .project-flow-lane { margin-top: 28px; }
+.project-story .project-flow-lane > h3 { font: 600 15px/1.5 var(--sans); color: var(--teal); margin-bottom: 16px; }
+.project-story .project-flow-steps { display: flex; align-items: stretch; gap: 28px; padding: 0; margin: 0; list-style: none; }
+.project-story .project-flow-steps > li { flex: 1; min-width: 0; position: relative; padding: 20px; background: var(--light); border: 1px solid var(--rule); border-radius: 4px; }
+.project-story .project-flow-steps > li:not(:last-child)::after { content: "→"; position: absolute; right: -24px; top: 29px; color: var(--teal); font: 22px/1 var(--serif); }
+.project-story .flow-step-number { display: block; margin-bottom: 12px; font: 11px/1.5 var(--mono); color: var(--rust); }
+.project-story .project-flow-steps h4 { margin-bottom: 8px; color: var(--ink); font: 600 15px/1.5 var(--sans); }
+.project-story .project-flow-steps p { font-size: 14px; line-height: 1.75; color: var(--muted); }
+.project-story .flow-caption { max-width: 75ch; color: var(--muted); font-size: 13px; line-height: 1.8; margin-top: 18px; }
+.project-story .project-example-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 24px; }
+.project-story .project-example-grid figure { min-width: 0; margin: 0; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); overflow: hidden; }
+.project-story .project-example-grid figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 14px 20px; border-bottom: 1px solid var(--rule); color: var(--teal); font: 600 14px/1.6 var(--sans); }
+.project-story .project-example-grid figcaption span { font: 11px/1.8 var(--mono); color: var(--muted); }
+.project-story pre { margin: 0; padding: 20px; color: var(--ink); font: 13px/1.85 var(--mono); overflow-x: auto; tab-size: 2; }
+.project-story pre:focus-visible { outline: 3px solid var(--rust); outline-offset: -4px; }
+.project-story code { font: inherit; }
+.project-story .project-screenshot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 24px; align-items: start; }
+.project-story .project-screenshot-grid figure { min-width: 0; margin: 0; }
+.project-story .project-screenshot-grid a { display: block; }
+.project-story .project-screenshot-grid img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: contain; object-position: top; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+.project-story .project-screenshot-grid figcaption { color: var(--muted); font-size: 13px; line-height: 1.8; margin-top: 12px; }
+.project-story .project-notes .prose-copy { font-size: 15px; }
+@media (max-width: 850px) {
+  .project-story .project-flow-steps { flex-direction: column; gap: 26px; }
+  .project-story .project-flow-steps > li { padding: 20px; }
+  .project-story .project-flow-steps > li:not(:last-child)::after { content: "↓"; top: auto; right: auto; left: calc(50% - 6px); bottom: -25px; }
+  .project-story .flow-step-number { margin-bottom: 8px; }
+  .project-story .project-example-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .project-story .story-navigation { column-gap: 20px; }
+  .project-story .story-navigation a { max-width: none; }
+  .project-story .project-screenshot-grid { grid-template-columns: 1fr; }
+  .project-story .project-flow-steps > li { padding: 18px; }
+  .project-story pre { padding: 18px; font-size: 12px; }
+}

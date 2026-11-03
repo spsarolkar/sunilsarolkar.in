@@ -1,5 +1,7 @@
 import Header from "../../header";
 import Link from "next/link";
+import DetailedProject from "../../components/DetailedProject";
+import { projectDetails } from "../../_data/projectDetails";
 
 interface Project {
   slug: string;
@@ -13,6 +15,8 @@ interface Project {
 }
 
 export default function ProjectDetailClient({ project }: { project: Project }) {
+  const restored = projectDetails[project.slug];
+  if (restored) return <DetailedProject project={project} details={restored} />;
   const hasDetails = Boolean(project.tech_stack?.length || project.externalLink);
   return (
     <article className="wrap lab-page">
