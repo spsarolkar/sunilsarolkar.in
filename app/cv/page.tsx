@@ -15,7 +15,7 @@ const informationLabels: Record<string, string> = {
 
 export default function CvPage() {
   return (
-    <article className="wrap lab-page">
+    <article className="wrap lab-page cv-page">
       <Header
         eyebrow="AI & Finance"
         title="Experience & learning."
@@ -27,7 +27,16 @@ export default function CvPage() {
         <a className="lab-link" href="https://github.com/spsarolkar" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </div>
 
-      <section className="content-section">
+      <nav className="section-nav" aria-label="CV sections">
+        <a href="#introduction">Introduction</a>
+        <a href="#experience">Experience</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#selected-projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#training-badges">Badges</a>
+      </nav>
+
+      <section id="introduction" className="content-section">
         <h2>A quick introduction</h2>
         <div className="prose-copy mb-7"><p>{cv.summary}</p><p>{cv.domainSummary}</p></div>
         <dl className="cv-summary">
@@ -37,19 +46,7 @@ export default function CvPage() {
         </dl>
       </section>
 
-      <section className="content-section">
-        <h2>Core competencies</h2>
-        <div className="cv-summary">
-          {cv.coreCompetencies.map((category) => (
-            <div key={category.name}>
-              <h3 className="eyebrow rust">{category.name}</h3>
-              <div className="lab-tags">{category.items.map((skill) => <span className="lab-tag" key={skill}>{skill}</span>)}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="content-section">
+      <section id="experience" className="content-section">
         <h2>Professional experience</h2>
         {cv.professionalExperience.map((job) => (
           <div className="cv-row" key={`${job.institution}-${job.year}`}>
@@ -62,19 +59,31 @@ export default function CvPage() {
         ))}
       </section>
 
-      <section className="content-section">
+      <section id="expertise" className="content-section">
+        <h2>Core competencies</h2>
+        <div className="competency-grid">
+          {cv.coreCompetencies.map((category) => (
+            <div key={category.name}>
+              <h3>{category.name}</h3>
+              <ul>{category.items.map((skill) => <li key={skill}>{skill}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="selected-projects" className="content-section">
         <h2>Selected projects</h2>
         {cv.keyProjects.map((project) => (
-          <div className="mb-8 last:mb-0" key={project.title}>
-            <h3 className="text-2xl mb-2">{project.title}</h3>
-            <p className="muted text-sm mb-4">{project.context}</p>
+          <div className="cv-project" key={project.title}>
+            <h3>{project.title}</h3>
+            <p className="project-context">{project.context}</p>
             <div className="prose-copy">{project.description.map((text, i) => <p key={i}>{text}</p>)}</div>
             {"link" in project && <a className="lab-link mt-2" href={project.link} target="_blank" rel="noopener noreferrer">{project.linkLabel} ↗</a>}
           </div>
         ))}
       </section>
 
-      <section className="content-section">
+      <section id="education" className="content-section">
         <h2>Education & certifications</h2>
         {cv.education.map((item) => (
           <div className="education-item" key={`${item.title}-${item.year}`}>
@@ -93,7 +102,7 @@ export default function CvPage() {
         <div className="recognition-grid">
           {trainingBadges.map((badge) => (
             <figure key={badge.name}>
-              <img src={badge.image} alt="" width={72} height={72} loading="lazy" />
+              <img src={badge.image} alt="" width={132} height={132} loading="lazy" />
               <figcaption>{badge.name}</figcaption>
             </figure>
           ))}

@@ -1,14 +1,17 @@
-import React from 'react'
+import type { Metadata } from "next";
+import Header from "../header";
 
-const Background = () => {
+export const metadata: Metadata = { title: "Outside the lab" };
+
+export default function PhotoStudy() {
   return (
-    <div className='absolute inset-0 grid-cols-3'>
-      <div className='relative bg-[url(/background/Torna-wide.jpg)] h-full w-full col-span-3'></div>
-      <div className='relative bg-[url(/background/AMK.jpg)] h-full w-full col-span-3'></div>
-      <div className='bg-[url(/background/Torna-Dam-View.jpg)] h-full w-full col-span-3'></div>
-      
+    <div className="wrap lab-page">
+      <Header eyebrow="Photo study" title="Outside the lab." />
+      <div className="photo-grid">
+        <figure><img src="/background/Torna-wide.jpg" alt="A wide view of the hills" /></figure>
+        <figure><img src="/background/AMK.jpg" alt="Mountain scenery" loading="lazy" /></figure>
+        <figure><img src="/background/Torna-Dam-View.jpg" alt="A view across the hills and water" loading="lazy" /></figure>
+      </div>
     </div>
-  )
+  );
 }
-
-export default Background

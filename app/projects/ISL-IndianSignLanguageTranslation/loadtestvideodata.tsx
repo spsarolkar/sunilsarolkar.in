@@ -16,6 +16,7 @@ interface FrameData {
 const LoadTestVideoData = () => {
   const [frames, setFrames] = useState<FrameData[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
+  const [catalogueStatus, setCatalogueStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [testData, setTestData] = useState<ISLTestData>({});
   const [selectedCategory, setSelectedCategory] = useState('');
   const [expressions, setExpressions] = useState<string[]>([]);
@@ -37,7 +38,9 @@ const LoadTestVideoData = () => {
         const data = await res.json();
         setTestData(data as ISLTestData);
         setCategories(Object.keys(data as ISLTestData));
+        setCatalogueStatus('ready');
       } catch (error) {
+        setCatalogueStatus('error');
         console.error("Error fetching categories:", error);
       }
     };
@@ -299,6 +302,13 @@ const LoadTestVideoData = () => {
 
   return (
     <>
+      {catalogueStatus !== 'ready' && (
+        <p className="demo-empty catalogue-status" role="status">
+          {catalogueStatus === 'loading'
+            ? 'Loading the video catalogue…'
+            : 'The video catalogue is currently unavailable. You can still explore the pipeline and keypoint visualisations above.'}
+        </p>
+      )}
       <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
         {/* Sidebar for categories, expressions, and filenames */}
         <div className='col-span-1 space-y-4'>
@@ -306,6 +316,7 @@ const LoadTestVideoData = () => {
             onChange={(e) => setSelectedCategory(e.target.value)}
             value={selectedCategory}
             aria-label="Video category"
+            disabled={catalogueStatus !== 'ready'}
             className="lab-select"
           >
             <option value=''>Select Category</option>
