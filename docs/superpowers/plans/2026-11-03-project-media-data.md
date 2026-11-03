@@ -70,8 +70,8 @@ and data required; do not imply the single pose demo describes the whole dataset
 - [x] Run meaningful helper tests, TypeScript and production Pages build.
 - [x] Independent review of math, state transitions, content and regressions.
 - [x] Browser checks at desktop and phone widths; correct observed failures.
-- [ ] Commit scoped changes; deploy using documented existing Pages workflow.
-- [ ] Verify all public routes, 118 CV values, four badge hashes, restored media,
+- [x] Commit scoped changes; deploy using documented existing Pages workflow.
+- [x] Verify all public routes, 118 CV values, four badge hashes, restored media,
       unchanged CSV, existing API statuses and protected map gate; record receipts.
 
 ## Execution evidence
@@ -111,4 +111,26 @@ and data required; do not imply the single pose demo describes the whole dataset
 
 ## Publication
 
-Pending deployment and live verification.
+Published source `1eb19e67a14bf3371952a243f9b0ba350b7521e6` to the existing
+Cloudflare Pages production project with the documented Wrangler 3.99.0 workflow,
+retaining dashboard bindings and the separate protected map Worker.
+
+- Deployment: https://ddb5cca4.profile-sunilsarolkar-in.pages.dev
+- Telemetry: https://sunilsarolkar.in/projects/vehicle-telemetry
+- Explorer: https://sunilsarolkar.in/projects/ISL-IndianSignLanguageTranslation#visuals
+- Production regression passes 11 public content routes, two styled missing
+  routes, 118 CV values, four badge hashes and 21 public image paths.
+- Restored original video embed, direct fallback, full-size diagram/source links
+  and four media hashes pass on the live domain. The CSV matches source exactly.
+- Actual production telemetry player and loaded explorer inspected in Chrome;
+  counts 167 / 2,041 / 128 and the discrepancy notice render correctly.
+- `/api/hello` and `/api/getTestData` remain 200. The existing catalogue endpoint
+  remains 500; this task does not repair that backend. The map landing retains
+  its password gate and direct map HTML remains 401.
+- Receipts: `/tmp/sunilsarolkar-project-media-regression-production.json`,
+  `/tmp/sunilsarolkar-project-media-production.json`, and
+  `/tmp/sunilsarolkar-project-media-deploy.log`.
+
+No dependencies, datasets, private data, CV credentials, existing API handlers or
+hosting configuration were changed. Source is committed on the retained isolated
+`codex/personal-lab-theme` branch; the original dirty checkout remains untouched.
