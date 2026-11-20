@@ -1,4 +1,5 @@
 import { LabPipeline } from "./LabIllustrations";
+import CredlyBadges from "./components/CredlyBadges";
 export default function Home() {
     return (<div className="wrap">
 
@@ -83,6 +84,8 @@ export default function Home() {
     <h3>Findbugs resource tracker</h3>
     <p>A Java plugin exploring connection leaks that the existing checks missed.</p>
     <a href="https://github.com/spsarolkar/Findbugs_AdResTrackr" target="_blank" rel="noopener noreferrer">View the plugin ↗</a></article></div></section>
+
+    <CredlyBadges preview />
 
     <section id="outside" className="outside">
     <figure>

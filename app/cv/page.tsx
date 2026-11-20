@@ -4,6 +4,7 @@ import FormattedText from "../components/FormattedText";
 import cv from "../_data/cv.json";
 import trainingBadges from "../_data/badges.json";
 import certifications from "../_data/certifications.json";
+import CredlyBadges from "../components/CredlyBadges";
 import "./credentials.css";
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function CvPage() {
         <a href="#selected-projects">Projects</a>
         <a href="#education">Education</a>
         <a href="#training-badges">Badges</a>
+        <a href="#credly-badges">Credly</a>
       </nav>
 
       <section id="introduction" className="content-section">
@@ -115,6 +117,7 @@ export default function CvPage() {
           ))}
         </div>
       </section>
+      <CredlyBadges />
     </article>
   );
 }

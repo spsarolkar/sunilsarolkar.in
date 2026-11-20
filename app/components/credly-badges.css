@@ -1,0 +1,31 @@
+.credly-section { scroll-margin-top: 32px; }
+.credly-heading { display: flex; justify-content: space-between; gap: 20px; align-items: end; }
+.credly-heading .eyebrow { margin-bottom: 10px; }
+.credly-section .credly-heading h2 { font-size: clamp(28px, 3.2vw, 34px); line-height: 1.25; letter-spacing: -.7px; margin: 0; }
+.credly-all { flex-shrink: 0; color: var(--teal); font-size: 14px; min-height: 44px; display: inline-flex; align-items: center; text-decoration: underline; }
+.credly-intro { font-size: 16px; color: var(--muted); margin: 16px 0 26px; max-width: 60ch; }
+.credly-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding: 0; margin: 0; list-style: none; }
+.credly-grid.credly-preview { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.credly-grid > li { min-width: 0; }
+.credly-card { display: flex; height: 100%; flex-direction: column; align-items: center; text-align: center; gap: 18px; padding: 24px 18px; border: 1px solid var(--rule); border-radius: 5px; background: var(--surface); transition: border-color .15s; }
+.credly-card:hover { border-color: var(--teal); text-decoration: none; }
+.credly-card:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+.credly-card img { width: 96px; height: 96px; object-fit: contain; flex-shrink: 0; }
+.credly-section .credly-card h3 { font: 600 14px/1.6 var(--sans); margin: 0; overflow-wrap: anywhere; }
+.credly-section .credly-card .credly-issuer, .credly-section .credly-card .credly-date { color: var(--muted); font: 14px/1.6 var(--sans); margin: 8px 0 0; }
+.credly-source { margin: 22px 0 0; font-size: 14px; color: var(--teal); }
+.credly-source a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; }
+.credly-notice { margin-top: 8px; color: var(--muted); font-size: 14px; max-width: 65ch; }
+@media (max-width: 900px) {
+  .credly-grid, .credly-grid.credly-preview { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .credly-heading { align-items: start; flex-direction: column; gap: 8px; }
+  .credly-intro { margin-top: 12px; }
+}
+@media (max-width: 420px) {
+  .credly-grid, .credly-grid.credly-preview { grid-template-columns: 1fr; }
+  .credly-card { flex-direction: row; text-align: left; align-items: start; padding: 20px 16px; gap: 16px; }
+  .credly-card img { width: 72px; height: 72px; }
+}
+@media (prefers-reduced-motion: reduce) { .credly-card { transition: none; } }
